@@ -18,7 +18,12 @@ function toDate(y: string | number, m: string | number, d: string | number) {
 </script>
 
 <template>
-  <div :data-is-current-version="Number(build) == Version.val || title == Version.str" class="builds">
+  <div
+    :data-is-current-version="
+      Number(build) == Version.val || build == Version.str || title == Version.str
+    "
+    class="builds"
+  >
     <div class="build-title">
       <template v-if="title">{{ title }}</template>
       <template v-else>Build {{ build }}</template>

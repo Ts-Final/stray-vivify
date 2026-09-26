@@ -400,6 +400,15 @@ import AHref from '@renderer/components/a-elements/a-href.vue'
       <div>添加了防沉迷提示，默认半小时，请去设置调一下。</div>
       <div>添加了一个无意义tip。</div>
     </Build>
+    <Build build="1.0.0" d="26" m="9" title="Originium" y="2026">
+      <template #bugs>
+        <div>降低了音频播放延迟。（@Creeper_001 PR#7）</div>
+        <div>调整了拖拽note和添加note两个功能的逻辑，之前似乎会在某些时候很混乱。</div>
+        <div>修复了防沉迷组件无法关闭、没有内容的问题。</div>
+        <div>修复了右侧工具不会响应选中的问题。</div>
+        <div>调整了打开skin文件夹的行为，现在没有1.png也可以正常打开了。</div>
+      </template>
+    </Build>
   </div>
 </template>
 
