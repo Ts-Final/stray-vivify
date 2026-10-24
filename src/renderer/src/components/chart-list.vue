@@ -23,6 +23,7 @@ watch(GlobalStat.all_chart_ref, () => {
   search.value = ''
   shown.value = GlobalStat.all_chart
 })
+GlobalStat.update_all_chart()
 
 const display_id = ref<string>()
 const display_data = ref<charts_data[number]>()

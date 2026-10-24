@@ -414,7 +414,6 @@ export class Chart extends StopClass {
           diffs: this.diffs.map((x) => x.meta.diff1 + ' ' + x.meta.diff2)
         })
       })
-      GlobalStat.update_all_chart()
       if (performance.now() - this.backup_last.value.time > 900e3) {
         this.backup()
       }

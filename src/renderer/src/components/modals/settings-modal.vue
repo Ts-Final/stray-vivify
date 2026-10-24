@@ -21,7 +21,10 @@ const ds = defineComponent({
     return () => h('div', { class: 'ds' }, slots.default?.())
   }
 })
-onUnmounted(() => Chart.current?.diff.force_fuck())
+onUnmounted(() => {
+  Chart.current?.diff.force_fuck()
+  Storage.save()
+})
 </script>
 
 <template>
