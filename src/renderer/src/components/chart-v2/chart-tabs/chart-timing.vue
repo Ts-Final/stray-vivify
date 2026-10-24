@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Chart } from '@renderer/core/chart/chart'
 import TimingSingle from '@renderer/components/chart-v2/timing-single.vue'
-import { computed, onMounted, provide, ref } from 'vue'
+import { computed, onMounted, onUnmounted, provide, ref } from 'vue'
 import { GlobalStat } from '@renderer/core/globalStat'
 import AButton2 from '@renderer/components/a-elements/a-button2.vue'
 import ACheckbox from '@renderer/components/a-elements/a-checkbox.vue'
@@ -49,7 +49,6 @@ const time = computed({
     if (move2.value) chart.diff.push_timing_all(index.value, delta)
     else if (move1.value) chart.diff.push_timing(index.value, delta)
     else diff.timing[index.value].time = value
-    diff.update_timing_list()
   }
 })
 
@@ -88,6 +87,8 @@ function bpm_change(e: Event) {
 function copy_timing_list() {
   navigator.clipboard.writeText(chart.diff.timing.map((t) => `${t.time}, ${t.bpm}`).join('\n'))
 }
+
+onUnmounted(() => chart.diff.update_timing_list())
 </script>
 
 <template>

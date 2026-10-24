@@ -656,6 +656,7 @@ export function editable_note_drawer(this: DiffDrawer, chart: Chart) {
     this.app.canvas.addEventListener('mouseenter', mousein)
     this.app.canvas.addEventListener('mouseleave', mouseout)
     this.app.canvas.addEventListener('mousedown', (e) => {
+      if (!chart.audio.paused) return
       if (e.button == 2) pending.on_right()
       if (e.button == 0) pending.on_click()
     })
@@ -665,6 +666,7 @@ export function editable_note_drawer(this: DiffDrawer, chart: Chart) {
       select.on_mouseup(e.offsetX)
     })
     this.app.canvas.addEventListener('mousedown', (e) => {
+      if (!chart.audio.paused) return
       select.on_mousedown(e)
     })
   }

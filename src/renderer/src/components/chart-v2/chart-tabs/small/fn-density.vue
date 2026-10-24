@@ -15,6 +15,7 @@ const dy = computed(() => {
 })
 
 function update_path() {
+  chart.diff.calc_density()
   chart.diff.update_density_path()
 }
 
