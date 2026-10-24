@@ -68,8 +68,7 @@ export type Invoke = {
       path: string
       id: string
     }
-    r: Promise<
-      | {
+    r: {
           state: 'success'
           folder: string
           json: string
@@ -84,7 +83,6 @@ export type Invoke = {
       | {
           state: 'cancelled'
         }
-    >
   }
   'import-vsp': {
     arg: {
@@ -218,7 +216,7 @@ export type Invoke = {
     r: void
   }
   'read-osz': {
-    arg: {      fp: string    }
+    arg: { fp: string }
     r:
       | {
           diff?: ChartTypeV2.diff[]
@@ -244,7 +242,7 @@ export type Invoke = {
     r: void
   }
   'read-mcz': {
-    arg: {      fp: string    }
+    arg: { fp: string }
     r:
       | {
           diff?: ChartTypeV2.diff[]

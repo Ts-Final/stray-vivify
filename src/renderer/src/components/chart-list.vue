@@ -69,7 +69,7 @@ async function import_pack(file: File) {
   if (!fp) return notify.error('没能拿到文件路径……')
   const ext = (file.name.split('.').pop() ?? '').toLowerCase()
 
-  let kind: 'svc' | 'vsp' | 'osz' | 'mcz'
+  let kind: 'svc' | 'vsp' | 'osz' | 'mcz' | 'music'
   if (ext == 'osz') kind = 'osz'
   else if (ext == 'mcz') kind = 'mcz'
   else if (ext == 'vsp') kind = 'vsp'
@@ -77,6 +77,8 @@ async function import_pack(file: File) {
     const detected = await Invoke('detect-chart-pack', { fp })
     if (detected == 'invalid') return notify.error('这个压缩包里没有可以导入的谱面……')
     kind = detected
+  } else if (['mp3', 'ogg', 'wav', 'm4a'].includes(ext)) {
+    kind = 'music'
   } else return notify.error(`不认识的格式：${ext || '没有扩展名'}……`)
 
   state = true
@@ -94,11 +96,14 @@ async function import_pack(file: File) {
       const r = await Invoke('import-vsp', { fp, id })
       if (r.state == 'failed') err = true
       else if (r.state == 'existed') err = true
+    } else if (kind == 'music') {
+      const r = await Invoke('import-song', { path: fp, id: id })
+      if (r.state != 'success') err = true
     } else if (!(await Invoke('import-zip', { fp, id }))) {
       err = true
     }
 
-    if (err) notify.error("导入失败，爆！")
+    if (err) notify.error('导入失败，爆！')
     await GlobalStat.update_all_chart()
     shown.value = GlobalStat.all_chart
   } finally {
