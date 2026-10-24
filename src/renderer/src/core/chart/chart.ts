@@ -115,7 +115,7 @@ export class Chart extends StopClass {
   refs: {
     diff_ref: Ref<number>
   }
-  backup_last = ref({ time: performance.now(), init: true })
+  backup_last = ref({ time: Date.now(), init: true })
 
   constructor(id: string, buffer: AudioBuffer, length: ms) {
     super()
@@ -204,6 +204,7 @@ export class Chart extends StopClass {
 
   static async open_chart(id: string) {
     GlobalStat.route.change('load-song')
+    LoadSong.init()
     const file = await Invoke('open-song', { id })
     LoadSong.status.open_song = true
     const blob = await this.fetch_blob(id)
@@ -216,7 +217,6 @@ export class Chart extends StopClass {
       GlobalStat.route.change('start')
       throw e
     }
-    debugger
     const length = buffer.duration * 1000
     LoadSong.status.audio_length = true
     LoadSong.status.blob_path = true
@@ -442,7 +442,7 @@ export class Chart extends StopClass {
       data: final
     })
     notify.success('已备份！')
-    this.backup_last.value.time = performance.now()
+    this.backup_last.value.time = Date.now()
     this.backup_last.value.init = false
   }
 
