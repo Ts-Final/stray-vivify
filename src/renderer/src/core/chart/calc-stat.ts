@@ -76,7 +76,7 @@ export function calc_stats(diff: ChartTypeV2.diff, songLengthMs: time_ms): Chart
   let t1 = (bumper / 2 + hold / 2) / (length / 20)
   let t2 = (data.jackStat / 2300 + data.chainStat / 2300 - Math.max(0, (length - 180) / 2.5)) / 1.5
   techStat = Math.pow(Math.max(0, t1 + basepower + t2 - 20), 1.025)
-  fillStat = data.peakDensity * 4 - 30
+  fillStat = Math.max(data.peakDensity * 4 - 30, 0)
   multiStat = Math.pow(Math.max(0, multi / 1.5 / (length / 20) + basepower), 1.025)
   totalV2 = noteStat + speedStat + techStat + multiStat * 0.33 + fillStat * 0.5
   totalV3 = Math.pow(

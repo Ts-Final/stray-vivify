@@ -20,7 +20,7 @@ function getStatStyle(statName: keyof ChartTypeV2.SongStats) {
   const val = sr.value[statName]
 
   if (!Storage._ref.value.settings.color_stats) {
-    const width = val > 400 ? '100%' : (val % 200) / 2 + '%'
+    const width = val > 200 ? '100%' : (val) / 2 + '%'
     return {
       width: width,
       bg: 'white',
@@ -97,7 +97,7 @@ const class_line = computed(() => {
   animation: a-rainbow-cycle-stat 3s infinite linear;
 }
 .stat-white {
-  background: white;
+  background: #bbbbbb44;
 }
 
 .rainbow-line {
