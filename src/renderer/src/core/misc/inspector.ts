@@ -39,7 +39,8 @@ export namespace MemoryUsage {
     Invoke('memory-backend').then((r) => {
       backend.value = r
     })
-    frontend.value = (performance as any).memory as MemoryInfo
+    if ((performance as any).memory)
+      frontend.value = (performance as any).memory as MemoryInfo
   }
 }
 export namespace MouseTracker {
@@ -113,7 +114,7 @@ export const Log = {
       this.fix_max()
     })
     if (disable_inspect) return
-    if (location.protocol == "http:") return
+    if (location.protocol == 'http:') return
     const keys = ['log', 'warn', 'error', 'debug']
     for (const key of keys) {
       const old: Function = console[key]
