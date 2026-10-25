@@ -19,7 +19,7 @@ watch(data, (v) => {
 const is_listen = ref(false)
 function listen_keyboard() {
   is_listen.value = true
-  ShortCuts.on_listening.value = true
+  ShortCuts.stop_listening()
   document.addEventListener(
     'keyup',
     (e) => {
@@ -33,7 +33,7 @@ function listen_keyboard() {
         name: data.value.name
       }
       is_listen.value = false
-      ShortCuts.on_listening.value = false
+      ShortCuts.resume_listening()
     },
     { once: true }
   )

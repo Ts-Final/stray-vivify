@@ -166,6 +166,13 @@ export class ShortCuts {
     }
   }
 
+  static stop_listening() {
+    this.on_listening.value = true
+  }
+  static resume_listening() {
+    this.on_listening.value = false
+  }
+
   handle_keyup(e: KeyboardEvent) {
     if (this.keyup == null) return
     if (this.is(e.key, e.altKey, e.ctrlKey, e.shiftKey)) {

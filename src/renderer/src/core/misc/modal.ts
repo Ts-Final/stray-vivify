@@ -18,6 +18,7 @@ import LoadBackupModal from '@renderer/components/modals/load-backup-modal.vue'
 import AntiAddictModal from '@renderer/components/modals/anti-addict-modal.vue'
 import FnTabsModal from '@renderer/components/modals/fn-tabs-modal.vue'
 import H2pModal from '@renderer/components/modals/h2p-modal.vue'
+import TapBpmModal from '@renderer/components/modals/tap-bpm-modal.vue'
 
 export class modal<T extends Component> {
   static SettingModal = new modal(SettingsModal)
@@ -38,6 +39,7 @@ export class modal<T extends Component> {
   static AntiAddictionModal = new modal(AntiAddictModal)
   static FnTabsModal = new modal(FnTabsModal)
   static H2PModal = new modal(H2pModal)
+  static TapBPMModal = new modal(TapBpmModal)
 
   component: T
   readonly priority: number

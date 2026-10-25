@@ -5,6 +5,7 @@ import { computed, onMounted, onUnmounted, provide, ref } from 'vue'
 import { GlobalStat } from '@renderer/core/globalStat'
 import AButton2 from '@renderer/components/a-elements/a-button2.vue'
 import ACheckbox from '@renderer/components/a-elements/a-checkbox.vue'
+import { modal } from '@renderer/core/misc/modal'
 
 const chart = Chart.$current
 const diff = chart.diff
@@ -88,6 +89,10 @@ function copy_timing_list() {
   navigator.clipboard.writeText(chart.diff.timing.map((t) => `${t.time}, ${t.bpm}`).join('\n'))
 }
 
+function open_tap() {
+  modal.TapBPMModal.show({})
+}
+
 onUnmounted(() => chart.diff.update_timing_list())
 </script>
 
@@ -97,6 +102,7 @@ onUnmounted(() => chart.diff.update_timing_list())
       <div class="timing-list">
         <div class="timing-header">
           <div style="flex: 1">Timing List</div>
+          <a-button2 class="timing-add" msg="Tap BPM" @click="open_tap()" />
           <a-button2 class="timing-add" msg="复制timing list" @click="copy_timing_list" />
           <a-button2 class="timing-add" msg="+new Timing" @click="add_timing" />
         </div>
@@ -187,7 +193,7 @@ onUnmounted(() => chart.diff.update_timing_list())
   display: flex;
   justify-content: space-between;
   padding-left: 15px;
-  gap:  5px;
+  gap: 5px;
 }
 .timing-add {
   border-radius: 3px;
