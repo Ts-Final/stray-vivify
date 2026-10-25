@@ -19,6 +19,7 @@ const {msg} = defineProps<{msg: string}>()
   text-wrap: nowrap;
   text-align: center;
   transition: transform 0.1s ease-out;
+  display: inline;
 }
 .a-button2:hover {
   transform: scale(1.1);

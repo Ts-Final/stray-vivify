@@ -43,16 +43,29 @@ class anti_addiction {
   do_popup() {
     if (!Storage.settings.addict.enabled) return
     if (this.disable) return
-    const msg = utils.random(messages)
     this.times += 1
     Intervals.wait_resume.then(() => {
-      const content = msg[1] + ' <br>by ' + msg[0]
-      if (Storage.settings.addict.popup)
-        modal.AntiAddictionModal.show({
-          msg: msg
-        })
-      else notify.normal(content, 5000)
+      this.popup()
     })
+  }
+
+  try_out() {
+    if (this.disable) {
+      this.disable = false
+      return notify.error("你给我关了我怎么弹出。")
+    }
+    this.popup()
+  }
+
+  popup() {
+    const msg = utils.random(messages)
+
+    const content = msg[1] + ' <br>by ' + msg[0]
+    if (Storage.settings.addict.popup)
+      modal.AntiAddictionModal.show({
+        msg: msg
+      })
+    else notify.normal(content, 5000)
   }
 
   init() {

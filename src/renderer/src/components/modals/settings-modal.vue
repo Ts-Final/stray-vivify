@@ -12,6 +12,8 @@ import ACheckbox2 from '@renderer/components/a-elements/a-checkbox2.vue'
 import { defineComponent, h, onUnmounted } from 'vue'
 import { EventHub } from '@renderer/core/misc/eventhub'
 import { Chart } from '@renderer/core/chart/chart'
+import AButton2 from '@renderer/components/a-elements/a-button2.vue'
+import { AntiAddiction } from '@renderer/core/misc/anti-addiction'
 
 const r = Storage._ref
 
@@ -41,6 +43,13 @@ onUnmounted(() => {
         <ds>会帮你自动填到谱师栏</ds>
         <div>显示stray/vivify图标</div>
         <a-checkbox2 v-model="r.settings.stray_logo" />
+
+        <setting-header msg="子页面" />
+        <div class="settings-fns">
+          <a-button2 msg="快捷键设置" @click="modal.ShortcutModal.show({})" />
+          <a-button2 msg="Fn排列" @click="modal.FnTabsModal.show({})" />
+          <a-button2 msg="DevTools" @click="Invoke('open-dev')" />
+        </div>
 
         <setting-header msg="Lane部分" />
         <div>lane-width (px)</div>
@@ -110,7 +119,9 @@ onUnmounted(() => {
         <div>使用弹窗</div>
         <a-checkbox2 v-model="r.settings.addict.popup" />
         <ds>
-          勾选此项，会使用类似本窗口的modal来进行提醒（可能破坏心情说是），不勾则会使用右上角的notify来进行提醒
+          勾选此项，会使用类似本窗口的modal来进行提醒
+            <a-button2 msg="试一下！" @click="AntiAddiction.try_out()" />
+          ，不勾则会使用右上角的notify来进行提醒
         </ds>
 
         <setting-header msg="难度参考" />
@@ -237,20 +248,20 @@ onUnmounted(() => {
         <ds>osu!std同款鼠标</ds>
         <div>禁用Inspector</div>
         <a-checkbox2 v-model="r.settings.disable_inspect" />
-        <ds
-          >开启后会禁用报错提示（下面这个）。能够在极限情况下提升性能（比如240FPS）。不建议开启。</ds
-        >
+        <ds>
+          开启后会禁用报错提示（下面这个）。能够在极限情况下提升性能（比如240FPS）。不建议开启。
+          <br />如果一定要开，好问题，just burn it and make a new pc.jpg
+        </ds>
         <div>报错时notify</div>
         <a-checkbox2 v-model="r.settings.err_notify" />
         <ds>不建议关闭。</ds>
+        <div class="settings-fns"></div>
       </div>
     </div>
     <template #footer>
-      <a-button msg="DevTools" @click="Invoke('open-dev')" />
-      <a-button msg="查看Version" @click="modal.VersionsModal.show({})" />
+      <a-button msg="帮助文档" @click="modal.H2PModal.show({})" />
       <a-button msg="Inspector" @click="modal.InspectorModal.show({})" />
-      <a-button msg="快捷键设置" @click="modal.ShortcutModal.show({})" />
-      <a-button msg="Fn排列" @click="modal.FnTabsModal.show({})" />
+      <a-button msg="查看Version" @click="modal.VersionsModal.show({})" />
       <a-button msg="Credits" @click="modal.CreditsModal.show({})" />
     </template>
   </SimpleModal>
@@ -335,5 +346,12 @@ input[type='checkbox'] {
 .warn::before {
   content: '⚠';
   color: gold;
+}
+.settings-fns {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px 10px;
 }
 </style>
