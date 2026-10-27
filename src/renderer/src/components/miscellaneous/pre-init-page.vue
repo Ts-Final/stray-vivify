@@ -4,6 +4,7 @@ import { GlobalStat } from '@renderer/core/globalStat'
 import './loading.css'
 import AButton2 from '@renderer/components/a-elements/a-button2.vue'
 import { Invoke } from '@renderer/core/ipc'
+import { route } from '@renderer/core/misc/route'
 
 const stages = Preinit.Stages
 const finished = Preinit.finished
@@ -46,7 +47,7 @@ const ipcRenderer = window.electron.ipcRenderer
         <div>加载阶段已经结束。此提示只会在以上阶段未能全部正确加载时出现。</div>
         <div>如果强行启动其实也没什么问题。这几个缺失都不会炸掉你的谱。</div>
         <div>可以截图控制台发我修bug。</div>
-        <a-button2 msg="强行启动！" @click="GlobalStat.route.change('start')" />
+        <a-button2 msg="强行启动！" @click="route.change('start')" />
       </template>
     </div>
   </div>

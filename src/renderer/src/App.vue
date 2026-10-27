@@ -14,8 +14,9 @@ import { computed } from 'vue'
 import PreInitPage from '@renderer/components/miscellaneous/pre-init-page.vue'
 import HeaderV2 from '@renderer/components/miscellaneous/header-v2.vue'
 import LoadSongPage from '@renderer/components/miscellaneous/load-song-page.vue'
+import { route } from '@renderer/core/misc/route'
 
-const state = GlobalStat.route.route
+const state = route.route
 // @ts-ignore i just dont understand why this sucks
 const app_key = RefreshAll.generate_key('app')
 

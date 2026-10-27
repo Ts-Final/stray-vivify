@@ -4,13 +4,6 @@ import { Invoke } from '@renderer/core/ipc'
 import { Chart } from '@renderer/core/chart/chart'
 
 export namespace GlobalStat {
-  type routes = 'start' | 'editor' | 'preinit' | 'load-song'
-  export const route = {
-    route: ref<routes>('preinit'),
-    change(p: routes) {
-      this.route.value = p
-    }
-  }
   export let all_chart = [] as charts_data
   export const all_chart_ref = ref(all_chart)
   export async function update_all_chart() {

@@ -1,13 +1,13 @@
 import { reactive, ref } from 'vue'
-import { GlobalStat } from '@renderer/core/globalStat'
 import { utils } from '@renderer/core/utils'
+import { route } from '@renderer/core/misc/route'
 
 export namespace Preinit {
   export function finish_init() {
     finished.value = true
     // if all passes check
     if (!Object.values(Stages).includes(false))
-      GlobalStat.route.change('start')
+      route.change('start')
     fns.forEach((x) => x())
     utils.clear_arr(fns)
   }

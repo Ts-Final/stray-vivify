@@ -6,6 +6,7 @@ import { Invoke } from '@renderer/core/ipc'
 import { RefreshAll } from '@renderer/core/misc/refresh-all'
 import './header.css'
 import WinFunc from '@renderer/components/miscellaneous/win-func.vue'
+import { route } from '@renderer/core/misc/route'
 
 const active = defineModel<number>()
 
@@ -23,7 +24,7 @@ function close_chart() {
     Chart.current.diff.stop()
   }
   Chart.current = undefined
-  GlobalStat.route.change('start')
+  route.change('start')
   Invoke('set-process-name', { name: 'stray/vivify' })
 }
 function open_exporter() {

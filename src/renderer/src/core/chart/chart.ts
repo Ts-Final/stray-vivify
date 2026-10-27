@@ -16,6 +16,7 @@ import { RefreshAll } from '@renderer/core/misc/refresh-all'
 import { HitSoundSystem } from '@renderer/core/chart/hit-sound'
 import { LoadSong } from '@renderer/core/misc/load-song'
 import nextFrame = utils.nextFrame
+import { route } from '@renderer/core/misc/route'
 
 /** 取文件路径的扩展名，小写、不带点 */
 function file_ext(fp: string): string {
@@ -203,7 +204,7 @@ export class Chart extends StopClass {
   }
 
   static async open_chart(id: string) {
-    GlobalStat.route.change('load-song')
+    route.change('load-song')
     LoadSong.init()
     const file = await Invoke('open-song', { id })
     LoadSong.status.open_song = true
@@ -214,7 +215,7 @@ export class Chart extends StopClass {
       buffer = await utils.decode_audio(blob, GlobalStat.audioContext)
     } catch (e) {
       notify.error('音频解码失败，无法打开该谱面。')
-      GlobalStat.route.change('start')
+      route.change('start')
       throw e
     }
     const length = buffer.duration * 1000
@@ -232,10 +233,10 @@ export class Chart extends StopClass {
     }
     LoadSong.status.set_data = true
     this.current = chart
-    GlobalStat.route.change('editor')
+    route.change('editor')
     Invoke('set-process-name', { name: `${chart.song.name} - stray/vivify` })
     watch(
-      GlobalStat.route.route,
+      route.route,
       () => {
         chart.audio.pause()
       },
