@@ -4,6 +4,7 @@ import { Storage } from '@renderer/core/storage'
 import { utils } from '@renderer/core/utils'
 import { notify } from '@renderer/core/misc/notify'
 import { GlobalStat } from '@renderer/core/globalStat'
+import { sectionTap } from '@renderer/core/misc/section-tap'
 
 const audioContext = GlobalStat.audioContext
 export class HitSoundSystem {
@@ -45,11 +46,16 @@ export class HitSoundSystem {
     if (last == current) return
 
     // Find note in current time window
-    const hitNote = this.shown.some((x) => {
-      if (!utils.between(x.time, [last, current])) return false
-      if ('snm' in x) return x.snm != 1
-      return true
-    })
+    // or if sectionTap is enabled, find section in current time window
+    const hitNote = sectionTap.enabled
+      ? this.chart.diff.section_list.some((x) => {
+          return utils.between(x, [last, current])
+        })
+      : this.shown.some((x) => {
+          if (!utils.between(x.time, [last, current])) return false
+          if ('snm' in x) return x.snm != 1
+          return true
+        })
     this.last_trigger = this.chart.audio.current_time - Storage.settings.offset3
 
     if (hitNote) {

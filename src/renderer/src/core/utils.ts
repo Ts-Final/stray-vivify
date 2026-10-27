@@ -347,6 +347,40 @@ export namespace utils {
   export function reduce_max(arr: number[]) {
     return arr.reduce((a, b) => Math.max(a, b), -Infinity)
   }
+
+  export function nearest(val: number, arr: number[]) {
+    return arr.toSorted((a, b) => Math.abs(val - a) - Math.abs(val - b))[0] ?? val
+  }
+
+  export function fitLine(data: [number, number][]): { a: number; b: number } {
+    const n = data.length
+    if (n < 2) return { a: NaN, b: NaN }
+
+    // 先求均值
+    const meanX = utils.average(data.map((x) => x[0]))
+    const meanY = utils.average(data.map((x) => x[1]))
+
+    // 用离差计算，避免大数相减
+    let sxx = 0,
+      sxy = 0
+    for (const [x, y] of data) {
+      const dx = x - meanX
+      const dy = y - meanY
+      sxx += dx * dx
+      sxy += dx * dy
+    }
+
+    if (sxx === 0) return { a: Infinity, b: 0 }
+
+    const a = sxy / sxx
+    const b = meanY - a * meanX
+    return { a, b }
+  }
+
+  export function variance(arr: number[], avg?: number) {
+    if (!avg) avg = average(arr)
+    return arr.map(x => Math.pow(x - avg, 2)).reduce((a, b) => a + b, 0) / arr.length
+  }
 }
 
 // @ts-expect-error

@@ -11,6 +11,7 @@ import FnEditTools from '@renderer/components/chart-v2/chart-tabs/small/fn-edit-
 import FnAimod from '@renderer/components/chart-v2/chart-tabs/small/fn-aimod.vue'
 import FnMma from '@renderer/components/chart-v2/chart-tabs/small/fn-mma.vue'
 import FnTesseract from '@renderer/components/chart-v2/chart-tabs/small/fn-tesseract.vue'
+import FnSectionTap from '@renderer/components/chart-v2/chart-tabs/small/fn-section-tap.vue'
 
 export type FnTabs = storages.settings['fn_tabs']
 
@@ -37,6 +38,7 @@ export const FN_TABS: FnTab[] = [
   { id: 8, file: 'fn-aimod', component: FnAimod },
   { id: 9, file: 'fn-mma', component: FnMma },
   { id: 10, file: 'fn-tesseract', component: FnTesseract },
+  { id: 11, file: 'fn-sectionTap', component: FnSectionTap }
 ]
 
 /** 默认排列，与加入本设置前的 chart-main 布局一致 */

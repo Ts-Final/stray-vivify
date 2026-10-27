@@ -104,7 +104,8 @@ const storage = ref<storages.storage_scheme>({
       minutes: 30,
       popup: true
     },
-    restrict_feature: false
+    restrict_feature: false,
+    tap_delay: 0,
   },
   version: Version.val,
   shortcut: '',

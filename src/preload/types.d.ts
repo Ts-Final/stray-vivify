@@ -617,6 +617,7 @@ export namespace storages {
       popup: boolean
     }
     restrict_feature: boolean
+    tap_delay: number
   }
   export interface statistics {
     first_open: number

@@ -6,7 +6,8 @@ const props = defineProps<{ id?: number }>()
 
 const H2P_ARTICLES: { id: number; title: string }[] = [
   { id: 1, title: '导读' },
-  { id: 2, title: 'skin' }
+  { id: 2, title: 'skin' },
+  { id: 3, title: '节拍器' }
 ]
 
 /** 当前显示的文章 id */
@@ -95,13 +96,45 @@ function show(next: number) {
             虽然windows好像会自动进行大小写转换（认定同一），但是sv不会这样子识别。
           </p>
         </div>
+        <div v-if="id == 3">
+          <h2 class="h2p-title">sectionTap</h2>
+          <p>命名是代码命名的，在反馈时请不要使用其它你自定义的名字，谢谢。</p>
+          <p>
+            准确来说是测谱面延迟的。通过下方的 <code>Tap</code> 和
+            <code>从头开始Tap</code>可以启用校准。
+          </p>
+          <h4>初校准</h4>
+          <p>
+            最开始通过tap得到的时间大概不太准，原因包括人类自然会有的误差、输入延迟、音频延迟和<b>谱面延迟</b>。
+            这四者共同作用会导致最开始的延迟飞上天（表现为+80左右）。
+          </p>
+          <p>
+            请找一张osu导入的谱子，或者你非常确定其 <b>谱面延迟</b> 几乎为0。
+            之后对其进行一段时间的tap，直到下方â变为彩色之后，将得到的 Avg Delay 填入
+            <code>设置-音频设置-Tap延迟</code>进行校准。（注意不需要取负，是多少填多少就可以了。
+          </p>
+          <h4>使用</h4>
+          <p>有两种操作方式：</p>
+          <p><code>Tap</code> - 自动对齐到最近的 <b>拍号</b>（也即分音为4下的线）并开始播放。</p>
+          <p><code>从开头Tap</code> - 跳转到该Timing开头并开始播放。</p>
+          <br />
+          <p>在Tap过程中，所有快捷键会被屏蔽，并被认定为一次Tap行为。</p>
+          <p>你会得到两个值： <code>Avg Delay</code> 和 <code>â</code>。</p>
+          <p>
+            <code>Avg Delay</code> -
+            可以将你的第一个timing推迟(#)ms，使用*移动此timing之后的所有物件*。也可以选择直接应用调整。
+          </p>
+          <p><code>â</code> - 稳定系数，具体是由线性回归拟合的。在0.001以下认定为比较稳定。</p>
+        </div>
       </div>
     </div>
   </SimpleModal>
 </template>
 
 <style scoped>
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3 {
   margin: 0;
   border-bottom: 1px solid gray;
 }
@@ -203,8 +236,10 @@ h1, h2, h3, h4, h5, h6 {
 .h2p-article code {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 0.2rem;
-  padding: 0 0.3rem;
-  font-size: 0.9em;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  font-family: monospace;
 }
 
 .h2p-article kbd {

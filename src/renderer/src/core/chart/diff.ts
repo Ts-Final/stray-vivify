@@ -671,6 +671,9 @@ export class Chart_diff extends StopClass {
     this.remove_note_with_undo(v)
   }
 
+  // find the nearest beat-line
+  // round - whether to round up/down (which could be later)
+  //   or only floor down (only find early pos)
   nearest(t: ms, round = true): ms {
     const bpm = this.bpm_of_time(t)
     if (!bpm) throw new Error('No bpm found???')
