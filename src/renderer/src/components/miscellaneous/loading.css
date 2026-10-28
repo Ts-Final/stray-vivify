@@ -34,7 +34,6 @@
   border-bottom: 2px solid #b8dcee;
 }
 .win-func {
-  -webkit-app-region: no-drag;
   font-family: Webdings, sans-serif;
   display: flex;
   align-self: center;

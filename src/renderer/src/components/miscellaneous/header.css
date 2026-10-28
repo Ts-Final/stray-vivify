@@ -21,7 +21,7 @@
   display: flex;
   height: 100%;
   align-items: center;
-  -webkit-app-region: drag;
+  /*-webkit-app-region: drag;*/
   flex-grow: 1;
   pointer-events: all;
 }
@@ -31,6 +31,12 @@
   margin: 0 15px;
   border-radius: 5px;
   border: 2px solid transparent;
+  -webkit-app-region: drag;
+}
+.header-draggable {
+  -webkit-app-region: drag;
+  flex: 1;
+  height: 100%;
 }
 
 .chart-name {
@@ -39,6 +45,8 @@
   border-left: #8d8d8d 2px solid;
   overflow: hidden;
   text-wrap: nowrap;
+  -webkit-app-region: drag;
+  flex-grow: 1;
 }
 
 .header-menu-ul {
@@ -49,9 +57,6 @@
   flex-direction: column;
   height: 100%;
   transition: all 0.2s linear;
-}
-.header-menu-ul * {
-  -webkit-app-region: no-drag;
 }
 
 .h-menu-btn-text {
@@ -69,7 +74,6 @@
   box-sizing: border-box;
   line-height: var(--header-height);
   user-select: none;
-  -webkit-app-region: no-drag;
 }
 
 .h-menu-btn-i {

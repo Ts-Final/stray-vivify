@@ -62,6 +62,7 @@ async function import_mcz() {
       <div class="header-menu-ul">
         <div class="h-menu-btn-text" @click="modal.H2PModal.show({})">帮助</div>
       </div>
+      <div class="header-draggable" />
     </div>
     <win-func />
   </div>

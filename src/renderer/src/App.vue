@@ -177,8 +177,8 @@ body {
 
   --z-modal-target: 200;
   --z-word-helper: 201; /* because the vue-modal is 200*/
-  --z-mouse-tracker: 202;
-  --z-header: 999;
+  --z-header: 202;
+  --z-mouse-tracker: 203;
 
   --header-font-size: 1.2rem;
   --header-line-height: 2rem;
