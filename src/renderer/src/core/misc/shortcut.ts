@@ -1,13 +1,13 @@
 import { Storage } from '@renderer/core/storage'
 import { ref } from 'vue'
 import { Chart } from '@renderer/core/chart/chart'
-import { GlobalStat } from '@renderer/core/globalStat'
 import { modal } from '@renderer/core/misc/modal'
 import { notify } from '@renderer/core/misc/notify'
 import { Invoke } from '@renderer/core/ipc'
 import { RefreshAll } from '@renderer/core/misc/refresh-all'
 import { NoteClipboard } from '@renderer/core/misc/note-clipboard'
 import { NoteType } from '@renderer/core/misc/note-type'
+import { route } from '@renderer/core/misc/route'
 
 const functions = [
   'redo',
@@ -40,7 +40,7 @@ const functions = [
   'w4',
   's',
   'mine',
-  'hold',
+  'hold'
 ] as const
 
 type SC_save = {
@@ -197,7 +197,12 @@ export class ShortCuts {
   }
 
   is(k: string, alt = false, ctrl = false, shift = false) {
-    return this.key.toLowerCase() == k.toLowerCase() && this._alt == alt && this._ctrl == ctrl && this._shift == shift
+    return (
+      this.key.toLowerCase() == k.toLowerCase() &&
+      this._alt == alt &&
+      this._ctrl == ctrl &&
+      this._shift == shift
+    )
   }
 
   handle(e: KeyboardEvent) {
@@ -224,15 +229,15 @@ export class ShortCuts {
 new ShortCuts('redo', 'y', () => Chart.current?.diff.execute_redo(), false, true)
 new ShortCuts('undo', 'z', () => Chart.current?.diff.execute_undo(), false, true)
 
-new ShortCuts('w1', '1', () =>   NoteType.set_width(1))
-new ShortCuts('w2', '2', () =>   NoteType.set_width(2))
-new ShortCuts('w3', '3', () =>   NoteType.set_width(3))
-new ShortCuts('w4', '4', () =>   NoteType.set_width(4))
-new ShortCuts('s', 'q', () =>    NoteType.change_s())
+new ShortCuts('w1', '1', () => NoteType.set_width(1))
+new ShortCuts('w2', '2', () => NoteType.set_width(2))
+new ShortCuts('w3', '3', () => NoteType.set_width(3))
+new ShortCuts('w4', '4', () => NoteType.set_width(4))
+new ShortCuts('s', 'q', () => NoteType.change_s())
 new ShortCuts('mine', 'w', () => NoteType.change_b())
 new ShortCuts('hold', 'e', () => NoteType.change_hold())
 new ShortCuts('pause', ' ', () => {
-  if (GlobalStat.chart_state.value != 0) return
+  if (route.tab.value != 1) return
   Chart.current?.audio.play_pause()
 })
 
@@ -309,4 +314,6 @@ new ShortCuts(
 
 new ShortCuts('refresh', 'r', () => RefreshAll.refreshAll(), false, true)
 
-new ShortCuts("error", "F3", () => { throw new Error("Thrown by shortcut call")})
+new ShortCuts('error', 'F3', () => {
+  throw new Error('Thrown by shortcut call')
+})

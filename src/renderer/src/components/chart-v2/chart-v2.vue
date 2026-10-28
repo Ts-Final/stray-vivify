@@ -10,6 +10,7 @@ import ChartMain from '@renderer/components/chart-v2/chart-tabs/chart-main.vue'
 import { EventHub } from '@renderer/core/misc/eventhub'
 import { Chart } from '@renderer/core/chart/chart'
 import { notify } from '@renderer/core/misc/notify'
+import { route } from '@renderer/core/misc/route'
 
 const active = GlobalStat.refs.chart_tab
 active.value = 2
@@ -73,7 +74,7 @@ function fuck_wheel(e: WheelEvent) {
   }
 }
 
-const chart_state = GlobalStat.chart_state
+const chart_state = route.tab
 </script>
 
 <template>
@@ -86,13 +87,12 @@ const chart_state = GlobalStat.chart_state
     @dragleave="on_dragleave"
     @drop.prevent="on_drop"
   >
-    <template v-if="chart_state == 0">
-      <song-info v-if="active == 1" />
-      <chart-main v-if="active == 2" />
-      <chart-timing v-if="active == 3" />
-    </template>
-    <preview v-if="chart_state == 1" />
-    <playfield v-if="chart_state == 2" />
+    <song-info v-if="chart_state == 0" />
+    <chart-main v-if="chart_state == 1" />
+    <chart-timing v-if="chart_state == 2" />
+
+    <preview v-if="chart_state == 3" />
+    <playfield v-if="chart_state == 4" />
   </div>
 </template>
 

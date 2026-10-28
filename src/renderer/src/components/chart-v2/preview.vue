@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { Chart } from '@renderer/core/chart/chart'
-import { GlobalStat } from '@renderer/core/globalStat'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { utils } from '@renderer/core/utils'
 import { Storage, Version } from '@renderer/core/storage'
@@ -10,12 +9,13 @@ import { notify } from '@renderer/core/misc/notify'
 import { Invoke } from '@renderer/core/ipc'
 import TickCircle from '@renderer/components/chart-v2/chart-tabs/small/tick-circle.vue'
 import PixiLane from '@renderer/components/chart-v2/svg-lane/pixi-lane.vue'
+import { route } from '@renderer/core/misc/route'
 
 const chart = Chart.$current
 
 function onkeydown(e: KeyboardEvent) {
   if (e.key == 'Escape') {
-    GlobalStat.chart_state.value = 0
+    route.setTab(1)
   }
 }
 const setting = computed(() => Storage.data.value.settings.record_field)
@@ -185,7 +185,7 @@ onUnmounted(() => {
               <div class="pr-combo">COMBO<br />{{ chart.diff.notes.length }}</div>
             </div>
             <fn-counter class="pr-counter" />
-            <div class="pr-back" @click="GlobalStat.chart_state.value = 0">返回编辑</div>
+            <div class="pr-back" @click="route.setTab(1)">返回编辑</div>
           </slot>
         </div>
       </div>

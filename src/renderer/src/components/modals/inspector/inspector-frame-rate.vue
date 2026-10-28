@@ -1,18 +1,18 @@
 <script lang="ts" setup>
 import { FrameRate } from '@renderer/core/misc/frame-rates'
 import FrameRateSingle from '@renderer/components/modals/frame-rate-single.vue'
-import { GlobalStat } from '@renderer/core/globalStat'
 import WordHelper from '@renderer/components/miscellaneous/word-helper.vue'
 import { Storage } from '@renderer/core/storage'
 import { utils } from '@renderer/core/utils'
 import { MemoryUsage } from '@renderer/core/misc/inspector'
 import { onMounted, onUnmounted } from 'vue'
 import { Intervals } from '@renderer/core/misc/intervals'
+import { route } from '@renderer/core/misc/route'
 
 const _fps_r = FrameRate.fps.refs
 const frontend = MemoryUsage.frontend
 const backend = MemoryUsage.backend
-const chart_tab = GlobalStat.chart_state
+const chart_tab = route.tab
 
 function parse_size(size: number) {
   if (size < 1024) return `${size}B`
@@ -53,7 +53,7 @@ onUnmounted(() => Intervals.off(1000, update_memory))
         <frame-rate-single :r="FrameRate.invalidator" msg="Inspector" />
         <frame-rate-single :r="FrameRate.next_tick" msg="渲染" />
         <frame-rate-single :r="FrameRate.fuck_shown" msg="Fuck Shown" />
-        <frame-rate-single v-if="chart_tab == 2" :r="FrameRate.playfield_frame" msg="Play Frame" />
+        <frame-rate-single v-if="chart_tab == 4" :r="FrameRate.playfield_frame" msg="Play Frame" />
         <frame-rate-single :r="FrameRate.update_pending" msg="Pending-note" />
         <frame-rate-single :r="FrameRate.calc_density" msg="calc-density" />
         <frame-rate-single :r="FrameRate.save" msg="save" />

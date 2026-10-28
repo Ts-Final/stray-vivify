@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { Chart } from '@renderer/core/chart/chart'
-import { GlobalStat } from '@renderer/core/globalStat'
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
 import { utils } from '@renderer/core/utils'
 import { Storage, Version } from '@renderer/core/storage'
@@ -10,6 +9,7 @@ import { Invoke } from '@renderer/core/ipc'
 import AButton2 from '@renderer/components/a-elements/a-button2.vue'
 import { ChartTypeV2 } from '@preload/chart-types'
 import PixiLane from '@renderer/components/chart-v2/svg-lane/pixi-lane.vue'
+import { route } from '@renderer/core/misc/route'
 
 const chart = Chart.$current
 const playfield = chart.$playfield
@@ -29,7 +29,7 @@ function pause() {
   chart.audio.set_current_time(chart.audio.current_time - 2000)
 }
 function exit_play() {
-  GlobalStat.chart_state.value = 0
+  route.setTab(1)
   chart.playfield = null
 }
 function continue_play() {
@@ -37,12 +37,12 @@ function continue_play() {
 }
 
 function restart() {
-  GlobalStat.chart_state.value = 0
+  route.setTab(1)
   chart.audio.pause()
   nextTick()
     .then(() => {
       chart.init_playfield()
-      GlobalStat.chart_state.value = 2
+      route.setTab(5)
       return nextTick()
     })
     .then(() => {
@@ -106,7 +106,7 @@ async function start_record() {
 }
 function main_loop() {
   playfield.update_per_frame()
-  if (GlobalStat.chart_state.value != 2 || chart.audio.ended) {
+  if (route.tab.value != 4 || chart.audio.ended) {
     console.log('play ended')
     return
   }
@@ -305,7 +305,7 @@ function title_ize(s: string) {
               <div>{{ final.total }}</div>
             </div>
           </div>
-          <div class="pr-back" @click="GlobalStat.chart_state.value = 0">返回编辑</div>
+          <div class="pr-back" @click="route.setTab(1)">返回编辑</div>
         </div>
       </div>
     </transition>

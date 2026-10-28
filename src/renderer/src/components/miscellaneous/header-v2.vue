@@ -42,27 +42,25 @@ function open_chart_folder() {
 
 function start_play() {
   Chart.$current.init_playfield()
-  GlobalStat.chart_state.value = 2
+  route.setTab(4)
 }
 function start_play_now() {
   Chart.$current.init_playfield(true)
-  GlobalStat.chart_state.value = 2
+  route.setTab(4)
 }
 function start_preview() {
-  GlobalStat.chart_state.value = 1
+  route.setTab(3)
 }
-
-const on = GlobalStat.refs.chart_tab
 
 function is_active(i: number, i1: number) {
   return i == i1 ? 'header-active' : ''
 }
 
-const cs = GlobalStat.chart_state
+const tab = route.tab
 </script>
 
 <template>
-  <div v-if="cs == 0" class="header-wrapper">
+  <div v-if="tab < 3" class="header-wrapper">
     <div class="header-top">
       <img alt="wug" class="header-yq" src="/yq.jpg" />
       <div class="header-menu-ul">
@@ -80,13 +78,13 @@ const cs = GlobalStat.chart_state
           <div class="h-menu-btn-text" @click="modal.H2PModal.show({})">帮助</div>
         </div>
       </div>
-      <div :class="is_active(on, 1)" class="header-menu-ul" @click="active = 1">
+      <div :class="is_active(tab, 0)" class="header-menu-ul" @click="active = 1">
         <div class="h-menu-btn-text">曲目</div>
       </div>
-      <div :class="is_active(on, 2)" class="header-menu-ul" @click="active = 2">
+      <div :class="is_active(tab, 1)" class="header-menu-ul" @click="active = 2">
         <div class="h-menu-btn-text">编排</div>
       </div>
-      <div :class="is_active(on, 3)" class="header-menu-ul" @click="active = 3">
+      <div :class="is_active(tab, 2)" class="header-menu-ul" @click="active = 3">
         <div class="h-menu-btn-text">时轴</div>
       </div>
       <div class="header-menu-ul" @click="start_preview">

@@ -4,10 +4,14 @@ import { onMounted, useTemplateRef } from 'vue'
 import { DiffDrawer } from '@renderer/core/chart/drawer'
 import { Storage } from '@renderer/core/storage'
 import { EventHub } from '@renderer/core/misc/eventhub'
-import { GlobalStat } from '@renderer/core/globalStat'
 import { Chart_diff } from '@renderer/core/chart/diff'
+import { route } from '@renderer/core/misc/route'
 
-const { lane_width = Storage.settings.lane_width, x_expand = 0, diff_index = -1 } = defineProps<{
+const {
+  lane_width = Storage.settings.lane_width,
+  x_expand = 0,
+  diff_index = -1
+} = defineProps<{
   lane_width?: number
   x_expand?: number
   diff_index?: number
@@ -27,7 +31,7 @@ onMounted(() => {
   })
 })
 function fuck_wheel(e: WheelEvent) {
-  if (GlobalStat.chart_state.value != 0) return
+  if (route.tab.value != 1) return
   if (e.ctrlKey || e.altKey) return
   chart.audio.pause()
   if (!e.target) return

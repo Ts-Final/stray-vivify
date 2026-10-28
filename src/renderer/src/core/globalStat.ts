@@ -1,4 +1,4 @@
-import { Ref, ref } from 'vue'
+import { ref } from 'vue'
 import { charts_data } from '@preload/types'
 import { Invoke } from '@renderer/core/ipc'
 import { Chart } from '@renderer/core/chart/chart'
@@ -24,8 +24,6 @@ export namespace GlobalStat {
       width: ref(screen.width)
     }
   }
-  // 0 - charting 1 - recording 2 - playing
-  export const chart_state = ref(0) as Ref<0 | 1 | 2>
 
   export async function close_app() {
     const current = Chart.current

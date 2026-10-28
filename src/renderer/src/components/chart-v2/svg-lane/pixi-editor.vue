@@ -4,8 +4,8 @@ import { onMounted, useTemplateRef } from 'vue'
 import { DiffDrawer } from '@renderer/core/chart/drawer'
 import { Storage } from '@renderer/core/storage'
 import { EventHub } from '@renderer/core/misc/eventhub'
-import { GlobalStat } from '@renderer/core/globalStat'
 import { editable_note_drawer } from '@renderer/core/chart/edit-drawer'
+import { route } from '@renderer/core/misc/route'
 
 const { lane_width = Storage.settings.lane_width, x_expand = 0 } = defineProps<{
   lane_width?: number
@@ -38,18 +38,19 @@ onMounted(() => {
   )
   editor.listen_handle()
 
-  drawer.init({ width: width }).then(() => {
-    container.value?.appendChild(drawer.app.canvas)
-    editor.event_handle()
-    diff.force_fuck()
-    EventHub.dispatch('audio-time-update')
-    container.value?.focus()
-  }).catch(() => {
-
-  })
+  drawer
+    .init({ width: width })
+    .then(() => {
+      container.value?.appendChild(drawer.app.canvas)
+      editor.event_handle()
+      diff.force_fuck()
+      EventHub.dispatch('audio-time-update')
+      container.value?.focus()
+    })
+    .catch(() => {})
 })
 function fuck_wheel(e: WheelEvent) {
-  if (GlobalStat.chart_state.value != 0) return
+  if (route.tab.value != 1) return
   if (e.ctrlKey || e.altKey) return
   chart.audio.pause()
   if (!e.target) return

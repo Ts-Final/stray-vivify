@@ -12,6 +12,7 @@ import { Skin } from '@renderer/core/misc/skin'
 import { NoteClipboard } from '@renderer/core/misc/note-clipboard'
 import { RefreshAll } from '@renderer/core/misc/refresh-all'
 import { NoteType } from '@renderer/core/misc/note-type'
+import { route } from '@renderer/core/misc/route'
 
 const mul = Storage.computes.mul
 const pointer_last = {
@@ -211,7 +212,7 @@ class Pending {
 
   on_click() {
     if (psd.p?.pre_drag) return
-    if (GlobalStat.chart_state.value != 0) return
+    if (route.tab.value != 1) return
     if (NoteClipboard.clipboard.value.length) {
       this.diff.add_notes_with_undo(this.pending_note)
       NoteClipboard.clear()
@@ -597,7 +598,7 @@ export function editable_note_drawer(this: DiffDrawer, chart: Chart) {
   }
   const __drawer = this
   function update_pending(e: { offsetX: number; offsetY: number; altKey: boolean }) {
-    if (GlobalStat.chart_state.value != 0) return
+    if (route.tab.value != 1) return
     if (!chart.audio.paused) return
     const mouse_time = __drawer.event_time(e.offsetY)
     if (!pending.dragging) {
