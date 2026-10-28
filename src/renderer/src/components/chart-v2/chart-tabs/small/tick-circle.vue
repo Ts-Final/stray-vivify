@@ -88,7 +88,7 @@ EventHub.use('fuck-shown', () => {
   left: 0;
   height: 100px;
   display: flex;
-  z-index: 3;
+  z-index: var(--z-tick-circle);
   background: #000000;
   border-top: 2px solid white;
 }
@@ -97,7 +97,6 @@ EventHub.use('fuck-shown', () => {
   padding-right: 15px;
   display: grid;
   grid-template-areas: 'a c ' 'a c ' 'b c';
-  z-index: 2;
   background: var(--dark-bgi);
   justify-items: center;
 }

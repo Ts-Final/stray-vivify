@@ -305,7 +305,6 @@ function random_tip() {
 .su-tip {
   position: relative;
   color: gold;
-  z-index: 15;
   line-height: 1.5rem;
   max-width: 85%;
 }
@@ -455,7 +454,7 @@ function random_tip() {
   position: absolute;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
+  z-index: var(--z-background);
   top: 0;
   left: 0;
   filter: blur(2px);

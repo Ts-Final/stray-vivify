@@ -168,12 +168,10 @@ body {
   --z-highest: 100;
   --h-l-b: 80px;
 
-  --z-lane-bg: 1;
-  --z-lane-line: 2;
-  --z-lane-canvas: 3;
-  --z-lane-bottom: 10;
-  --z-lane-note: 4;
-  --z-lane-note-higher: 5;
+  --z-background: -1;
+
+  --z-tick-circle: 100;
+  --z-preview-result: 101;
 
   --z-modal-target: 200;
   --z-word-helper: 201; /* because the vue-modal is 200*/

@@ -223,7 +223,7 @@ img {
   width: 100%;
   height: 100%;
   background-image: var(--purple-bgi);
-  z-index: 100;
+  z-index: var(--z-preview-result);
 }
 @keyframes pf-ani-img {
   0% {

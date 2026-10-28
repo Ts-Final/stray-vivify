@@ -40,21 +40,4 @@ const right_fns = computed(() => fn_components(fn_tabs.value.right))
   contain: strict;
   gap: 5px;
 }
-.chart-main-left {
-  display: none;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  flex-grow: 1;
-  justify-content: space-around;
-  position: relative;
-}
-
-.svg-lane {
-  z-index: 2;
-}
-
-.chart-fn {
-  z-index: 1;
-}
 </style>
