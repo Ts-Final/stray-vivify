@@ -4,7 +4,6 @@ import { ModalTarget } from '@kolirt/vue-modal'
 import AButton from '@renderer/components/a-elements/a-button.vue'
 import ChartList from '@renderer/components/chart-list.vue'
 import ChartV2 from '@renderer/components/chart-v2/chart-v2.vue'
-import { GlobalStat } from '@renderer/core/globalStat'
 import { Storage, Version } from '@renderer/core/storage'
 import WordHelperOverlay from '@renderer/components/miscellaneous/word-helper-overlay.vue'
 import MouseTracker from '@renderer/components/miscellaneous/mouse-tracker.vue'
@@ -24,7 +23,6 @@ const show_version = computed(() => {
   if (Storage.settings.always_version) return true
   else return state.value != 'editor'
 })
-const active = GlobalStat.refs.chart_tab
 </script>
 
 <template>
@@ -33,7 +31,7 @@ const active = GlobalStat.refs.chart_tab
     <ChartList v-if="state == 'start'" />
   </template>
   <template v-else-if="state == 'editor'">
-    <HeaderV2 v-model="active" />
+    <HeaderV2 />
     <ChartV2 />
   </template>
   <pre-init-page v-else-if="state == 'preinit'" />

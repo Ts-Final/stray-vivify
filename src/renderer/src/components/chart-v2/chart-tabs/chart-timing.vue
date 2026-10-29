@@ -2,10 +2,10 @@
 import { Chart } from '@renderer/core/chart/chart'
 import TimingSingle from '@renderer/components/chart-v2/timing-single.vue'
 import { computed, onMounted, onUnmounted, provide, ref } from 'vue'
-import { GlobalStat } from '@renderer/core/globalStat'
 import AButton2 from '@renderer/components/a-elements/a-button2.vue'
 import ACheckbox from '@renderer/components/a-elements/a-checkbox.vue'
 import { modal } from '@renderer/core/misc/modal'
+import { route } from '@renderer/core/misc/route'
 
 const chart = Chart.$current
 const diff = chart.diff
@@ -74,7 +74,7 @@ function add_timing() {
 
 function switcher(t: number) {
   chart.audio.set_current_time(t)
-  GlobalStat.refs.chart_tab.value = 2
+  route.tab.value = 1
 }
 
 onMounted(() => {

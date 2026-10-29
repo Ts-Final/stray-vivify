@@ -8,8 +8,6 @@ import './header.css'
 import WinFunc from '@renderer/components/miscellaneous/win-func.vue'
 import { route } from '@renderer/core/misc/route'
 
-const active = defineModel<number>()
-
 const song_name = GlobalStat.refs.header_display
 
 function do_refresh() {
@@ -78,13 +76,13 @@ const tab = route.tab
           <div class="h-menu-btn-text" @click="modal.H2PModal.show({})">帮助</div>
         </div>
       </div>
-      <div :class="is_active(tab, 0)" class="header-menu-ul" @click="active = 1">
+      <div :class="is_active(tab, 0)" class="header-menu-ul" @click="tab = 0">
         <div class="h-menu-btn-text">曲目</div>
       </div>
-      <div :class="is_active(tab, 1)" class="header-menu-ul" @click="active = 2">
+      <div :class="is_active(tab, 1)" class="header-menu-ul" @click="tab = 1">
         <div class="h-menu-btn-text">编排</div>
       </div>
-      <div :class="is_active(tab, 2)" class="header-menu-ul" @click="active = 3">
+      <div :class="is_active(tab, 2)" class="header-menu-ul" @click="tab = 2">
         <div class="h-menu-btn-text">时轴</div>
       </div>
       <div class="header-menu-ul" @click="start_preview">

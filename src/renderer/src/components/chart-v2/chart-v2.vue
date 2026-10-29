@@ -11,9 +11,6 @@ import { Chart } from '@renderer/core/chart/chart'
 import { notify } from '@renderer/core/misc/notify'
 import { route } from '@renderer/core/misc/route'
 
-const active = GlobalStat.refs.chart_tab
-active.value = 2
-
 const drag_depth = ref(0)
 /** dragenter/dragleave 在每个子元素上都会触发一次，用计数器判断是不是真的离开了 */
 function on_dragenter(e: DragEvent) {
@@ -43,8 +40,8 @@ function on_keydown(e: KeyboardEvent) {
   if (e.key != 'Tab') return
   if (e.altKey || e.ctrlKey) return
   e.preventDefault()
-  active.value += 1
-  if (active.value > 3) active.value = 1
+  route.tab.value += 1
+  if (route.tab.value > 2) route.tab.value = 0
 }
 
 document.addEventListener('keydown', on_keydown)
@@ -78,7 +75,6 @@ const chart_state = route.tab
 
 <template>
   <div
-    :data-cs="chart_state"
     class="chart-v2-wrapper"
     @wheel="fuck_wheel"
     @dragenter.prevent="on_dragenter"

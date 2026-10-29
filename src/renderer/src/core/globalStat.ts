@@ -17,7 +17,6 @@ export namespace GlobalStat {
     })
   }
   export const refs = {
-    chart_tab: ref(2),
     header_display: ref(''),
     window: {
       height: ref(screen.height),
