@@ -5,6 +5,8 @@ import AButton2 from '@renderer/components/a-elements/a-button2.vue'
 import { Invoke } from '@renderer/core/ipc'
 import { Chart } from '@renderer/core/chart/chart'
 import { RefreshAll } from '@renderer/core/misc/refresh-all'
+import { CONSTANT } from '@preload/constant'
+import { notify } from '@renderer/core/misc/notify'
 
 const chart = Chart.$current
 
@@ -31,8 +33,10 @@ function copy_diff() {
   chart.copy_diff()
 }
 
-function import_sprite() {
-  Invoke('import-sprite', { id: chart.id })
+async function import_sprite() {
+  const png = await Invoke('ask-file', { file: CONSTANT.ext.image })
+  if (!png) return notify.error('选到滚木了！')
+  await chart.import_sprite(png)
 }
 /*function import_bg() {
   Invoke('import-background', { id: chart.id })
@@ -62,7 +66,7 @@ const pkey = RefreshAll.generate_key('song-cover')
           @error="img_show = true"
         />
       </div>
-<!--      <div :key="pkey" class="song-info-single">
+      <!--      <div :key="pkey" class="song-info-single">
         <div>背景<a-button2 msg="导入背景" @click="import_bg" /></div>
         <img
           v-if="!img2_show"

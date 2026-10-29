@@ -2,7 +2,6 @@
 import SongInfo from '@renderer/components/chart-v2/chart-tabs/song-info.vue'
 import { Storage } from '@renderer/core/storage'
 import ChartTiming from '@renderer/components/chart-v2/chart-tabs/chart-timing.vue'
-import { GlobalStat } from '@renderer/core/globalStat'
 import Preview from '@renderer/components/chart-v2/preview.vue'
 import Playfield from '@renderer/components/chart-v2/playfield.vue'
 import { onUnmounted, ref } from 'vue'

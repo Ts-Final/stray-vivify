@@ -172,6 +172,7 @@ export type Invoke = {
   'import-sprite': {
     arg: {
       id: string
+      fp: string
     }
     r: void
   }

@@ -534,14 +534,9 @@ export default class ChartManager {
     return true
   }
 
-  import_sprite(id: string) {
-    const png = dialog.showOpenDialogSync({
-      properties: ['openFile'],
-      filters: [{ name: 'pictures', extensions: ['png', 'jpg', 'gif', '.jpeg'] }]
-    })
-    if (!png) return
+  import_sprite(id: string, fp: string) {
     try {
-      fs.copyFileSync(png[0], path.join(this.charts_folder, id, 'song' + path.extname(png[0])))
+      fs.copyFileSync(fp, path.join(this.charts_folder, id, 'song' + path.extname(fp)))
     } catch (e) {
       return
     }

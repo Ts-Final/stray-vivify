@@ -148,8 +148,8 @@ const Handler = (mw: Electron.BrowserWindow) => {
     'remove-chart': function (_, { id }) {
       chart_manager.remove_chart(id)
     },
-    'import-sprite': (_, { id }) => {
-      chart_manager.import_sprite(id)
+    'import-sprite': (_, { id, fp }) => {
+      chart_manager.import_sprite(id, fp)
     },
     'import-background': (_, { id }) => {
       chart_manager.import_bg(id)

@@ -17,6 +17,7 @@ import { HitSoundSystem } from '@renderer/core/chart/hit-sound'
 import { LoadSong } from '@renderer/core/misc/load-song'
 import nextFrame = utils.nextFrame
 import { route } from '@renderer/core/misc/route'
+import { CONSTANT } from '@preload/constant'
 
 /** 取文件路径的扩展名，小写、不带点 */
 function file_ext(fp: string): string {
@@ -565,6 +566,10 @@ export class Chart extends StopClass {
     this.load_vsc(r)
   }
 
+  async import_sprite(fp: string) {
+    await Invoke('import-sprite', { id: this.id, fp })
+  }
+
   /** 拖进来的文件：按扩展名分派到对应的读取流程 */
   async import_file(fp: string) {
     const ext = file_ext(fp)
@@ -572,7 +577,8 @@ export class Chart extends StopClass {
     if (ext == 'vsc') return this.load_vsc_file(fp)
     if (ext == 'osz') return this.import_osz(fp)
     if (ext == 'mcz') return this.import_mcz(fp)
-    notify.error(`不认识的格式：${ext || '没有扩展名'}……`)
+    if (CONSTANT.ext.image.includes(ext)) return this.import_sprite(fp)
+    notify.error(`不认识的格式：${ext || '滚木扩展名'}……`)
   }
   async write_png() {
     const svg = document.getElementById('chart-preview-svg')
