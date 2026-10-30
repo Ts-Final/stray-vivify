@@ -130,8 +130,6 @@ onUnmounted(() => {
         <a-number-input v-model="r.settings.diff_reference.main_lw" min="1" />
         <div>参考难度lane width</div>
         <a-number-input v-model="r.settings.diff_reference.ref_lw" min="1" />
-        <div>背景不透明度</div>
-        <a-number-input v-model="r.settings.diff_reference.bg_op" max="100" min="0" />
         <ds>背景模式下：参考难度的不透明度。</ds>
         <div>左右颠倒</div>
         <a-checkbox2 v-model="r.settings.diff_reference.reverse" />

@@ -602,7 +602,6 @@ export namespace storages {
       main_lw: number
       ref_lw: number
       reverse: boolean
-      bg_op: number
     }
     disable_inspect: boolean
 

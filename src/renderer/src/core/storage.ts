@@ -90,8 +90,7 @@ const storage = ref<storages.storage_scheme>({
     diff_reference: {
       main_lw: 130,
       ref_lw: 80,
-      reverse: false,
-      bg_op: 70
+      reverse: false
     },
     disable_inspect: false,
     fn_tabs: {
