@@ -13,7 +13,6 @@ import { modal } from '@renderer/core/misc/modal'
 import { Intervals } from '@renderer/core/misc/intervals'
 import { Log, MouseTracker } from '@renderer/core/misc/inspector'
 import { expose_variables } from '@renderer/core/misc/inspector-exposer'
-import { load_external_mods } from '@renderer/core/chart/vsm-objects'
 import { load_external_tips } from '@renderer/core/misc/startup-tips'
 import { Preinit } from '@renderer/core/misc/preinit'
 import { Skin } from '@renderer/core/misc/skin'
@@ -80,7 +79,6 @@ async function main() {
     ShortCuts.handle()
     MouseTracker.init()
     expose_variables()
-    load_external_mods()
     load_external_tips()
     FrameRate.try_kill(disable_inspect)
     if (!disable_inspect) setInterval(() => FrameRate.refresh(), 1000)
