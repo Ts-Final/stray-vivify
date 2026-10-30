@@ -9,7 +9,7 @@ import { route } from '@renderer/core/misc/route'
 
 const chart = Chart.$current
 const diff = chart.diff
-const index = ref(-1)
+const index = ref(parseInt(route.query.digest('timing-index', "-1")))
 const bpm_input = ref<HTMLInputElement>()
 const move1 = ref(false)
 const move2 = ref(false)

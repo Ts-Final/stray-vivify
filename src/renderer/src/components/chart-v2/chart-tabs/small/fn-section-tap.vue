@@ -5,12 +5,18 @@ import { onUnmounted, ref } from 'vue'
 import { sectionTap } from '@renderer/core/misc/section-tap'
 import { utils } from '@renderer/core/utils'
 import { notify } from '@renderer/core/misc/notify'
+import { route } from '@renderer/core/misc/route'
 
 const chart = Chart.$current
 const current_timing_ix = chart.diff.current_timing
 const go_tap = ref(false)
 const isST = sectionTap.ref
 const result = sectionTap.result
+
+function jump_to_timing() {
+  route.query.put("timing-index", current_timing_ix.value.toString())
+  route.setTab(2)
+}
 
 function tap() {
   chart.audio.set_and_play()
@@ -55,7 +61,7 @@ onUnmounted(() => end_tap())
       <div class="st-timing">
         <div class="st-timing-info">
           <div>BPM</div>
-          <div class="st-bpm">{{ chart.diff.timing[current_timing_ix].bpm.toFixed(2) }}</div>
+          <div class="st-bpm" @click="jump_to_timing()">{{ chart.diff.timing[current_timing_ix].bpm.toFixed(2) }}</div>
           <div>
             {{
               chart.diff.timing[current_timing_ix].num +
@@ -111,6 +117,7 @@ onUnmounted(() => end_tap())
 .st-bpm {
   font-size: 2rem;
   font-weight: bold;
+  cursor: pointer;
 }
 .st-timing-info {
   display: flex;
