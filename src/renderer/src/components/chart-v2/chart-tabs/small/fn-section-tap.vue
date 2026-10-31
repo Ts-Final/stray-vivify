@@ -21,6 +21,7 @@ function jump_to_timing() {
 function tap() {
   chart.audio.set_and_play()
   go_tap.value = true
+  refuse.value =false
   sectionTap.start()
 }
 function nearest_tap() {
@@ -34,6 +35,7 @@ function start_tap() {
 }
 
 function reset() {
+  refuse.value = false
   sectionTap.reset()
 }
 
@@ -45,11 +47,13 @@ function close_tap() {
   go_tap.value = false
   end_tap()
 }
+let refuse = ref(false)
 function apply_delay() {
   if (Math.abs(result.value.a) > 1e-3 || !result.value.a)
     return notify.error('数据稳定性不足！')
   chart.diff.push_timing_all(0, result.value.avg)
   notify.success('已应用延迟调整。')
+  refuse.value = true
 }
 onUnmounted(() => end_tap())
 </script>
@@ -92,7 +96,7 @@ onUnmounted(() => end_tap())
         <div class="st-stop">
           <a-button2 msg="清空数据" @click="reset()" />
           <a-button2 msg="stop" @click="end_tap()" />
-          <a-button2 v-if="!isST" msg="应用延迟" @click="apply_delay()" />
+          <a-button2 v-if="!isST && !refuse" msg="应用延迟" @click="apply_delay()" />
           <a-button2 msg="关闭" @click="close_tap()" />
         </div>
       </div>

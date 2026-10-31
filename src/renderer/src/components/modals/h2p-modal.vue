@@ -123,6 +123,9 @@ function show(next: number) {
           <p>
             <code>Avg Delay</code> -
             可以将你的第一个timing推迟(#)ms，使用*移动此timing之后的所有物件*。也可以选择直接应用调整。
+            <br>
+            需要注意的是，如果在（连续的）tap中出现了 Avg Delay 从一个 <strong>正数</strong>变为<strong>负数</strong>，
+            则需要考虑是不是bpm低了。反之，则需要调高bpm。
           </p>
           <p><code>â</code> - 稳定系数，具体是由线性回归拟合的。在0.001以下认定为比较稳定。</p>
         </div>
