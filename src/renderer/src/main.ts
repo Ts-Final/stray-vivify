@@ -18,6 +18,7 @@ import { Preinit } from '@renderer/core/misc/preinit'
 import { Skin } from '@renderer/core/misc/skin'
 import { AntiAddiction } from '@renderer/core/misc/anti-addiction'
 import { CheckUpdate } from '@renderer/core/misc/check-update'
+import { birthday } from '@renderer/core/misc/birthday'
 
 const app = createApp(App).use(
   createModal({
@@ -110,6 +111,10 @@ async function main() {
     Preinit.Stages.animation_frame = true
     await Skin.check_skin()
     Preinit.Stages.check_skin = true
+  })
+
+  await exec(async () => {
+    birthday.celebrate()
   })
 
   Preinit.finish_init()

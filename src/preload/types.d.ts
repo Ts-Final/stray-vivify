@@ -622,6 +622,7 @@ export namespace storages {
   export interface statistics {
     first_open: number
     used_time: number
+    last_seen: number
   }
 
   export interface storage_scheme {

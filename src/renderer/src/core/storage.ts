@@ -111,7 +111,8 @@ const storage = ref<storages.storage_scheme>({
   username: 'newcomer',
   statistics: {
     used_time: 0,
-    first_open: Date.now()
+    first_open: Date.now(),
+    last_seen: Date.now(),
   }
 })
 
@@ -161,6 +162,7 @@ export const Storage = {
     this.data.value.statistics.first_open = Math.min(time, this.data.value.statistics.first_open)
   },
   save() {
+    this.data.value.statistics.last_seen = Date.now()
     Invoke('save-conf', { data: JSON.stringify(toRaw(this.data.value)) })
   },
   get version() {
@@ -180,5 +182,13 @@ export const Storage = {
     storage.value.statistics.used_time += Date.now() - this.__update_last
     this.__update_last = Date.now()
     this.running_time.value = Date.now() - this.__start_time
+  },
+  statistics: {
+    get last_seen() {
+      return storage.value.statistics.last_seen
+    },
+    get last_seen_date() {
+      return new Date(storage.value.statistics.last_seen)
+    }
   }
 }
