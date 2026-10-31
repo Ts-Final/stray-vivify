@@ -22,8 +22,8 @@ import TapBpmModal from '@renderer/components/modals/tap-bpm-modal.vue'
 
 export class modal<T extends Component> {
   static SettingModal = new modal(SettingsModal)
-  static ConfirmModal = new modal(ConfirmModal)
-  static ShowInformationModal = new modal(ConfirmModal, false)
+  static ConfirmModal = new modal(ConfirmModal, false)
+  static ShowInformationModal = new modal(ConfirmModal)
   static VersionsModal = new modal(VersionsModal)
   static CreditsModal = new modal(CreditsModal)
   static AskIdModal = new modal(AskIdModal)

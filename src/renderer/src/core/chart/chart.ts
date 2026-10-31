@@ -367,7 +367,7 @@ export class Chart extends StopClass {
       }).then(() => {
         this.diff.notes = []
         this.diff.force_fuck()
-      })
+      }).catch(() => {})
     else
       modal.ConfirmModal.show({ msg: '确定要删除这个diff吗……不能撤回哦。' }).then(() => {
         this.diffs.splice(this.diff.diff_index.value, 1)
@@ -375,7 +375,7 @@ export class Chart extends StopClass {
         this.diff.update_on_diff_index()
         this.diff.force_fuck()
         RefreshAll.refresh('diff-choice')
-      })
+      }).catch(() => {})
   }
 
   bpm_of_time(time: ms) {

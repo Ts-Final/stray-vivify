@@ -52,7 +52,7 @@ export namespace CheckUpdate {
           `是否现在下载并自动更新？下载完成后程序会自动重启。${notes}`
       }).then(() => {
         void download()
-      })
+      }).catch(() => {})
     } catch (e) {
       console.warn('[check-update] ' + e)
     } finally {
@@ -69,7 +69,7 @@ export namespace CheckUpdate {
         `上次自动更新失败，程序仍在旧版本。<br>` +
         `可以手动解压更新包覆盖到：<br>${escape_html(s.install)}<br><br>` +
         `更新包：${escape_html(s.zip)}<br>日志：${escape_html(s.log)}`
-    }).catch(() => {})
+    })
   }
 
   const download = async (): Promise<void> => {
@@ -83,7 +83,7 @@ export namespace CheckUpdate {
           `自动更新失败：${escape_html(r.msg)}<br><br>` +
           `更新包已经下载到：<br>${escape_html(r.path)}<br>` +
           `可以解压后手动覆盖到：<br>${escape_html(r.install)}`
-      }).catch(() => {})
+      })
     }
   }
 }
