@@ -190,5 +190,8 @@ export const Storage = {
     get last_seen_date() {
       return new Date(storage.value.statistics.last_seen)
     }
+  },
+  get username() {
+    return storage.value.username
   }
 }
