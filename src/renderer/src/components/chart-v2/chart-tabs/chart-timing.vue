@@ -124,7 +124,7 @@ onUnmounted(() => chart.diff.update_timing_list())
         <div class="timing-index">timing #{{ index }}</div>
         <div>
           <span>Time</span>
-          <input v-model="time" class="timing-input" min="0" type="number" />
+          <input v-model="time" class="timing-input" min="-5000" type="number" />
         </div>
         <div>
           <span>BPM</span>
@@ -252,6 +252,7 @@ onUnmounted(() => chart.diff.update_timing_list())
   border: none;
   border-bottom: 2px solid #000;
   background: var(--purple-bgi);
+  font-style: normal;
 }
 .timing-input::-webkit-inner-spin-button,
 .timing-input::-webkit-outer-spin-button {

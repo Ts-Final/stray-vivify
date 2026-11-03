@@ -8,7 +8,6 @@ const data: IBirthData[] = [
   ['Arisu Suzushima', [9, 6]],
   ['白枫', [6, 28]],
   ['云枝', [3, 12]],
-  ['VE', [1, 5]],
   ['摸鱼月', [6, 16]],
   ['InvalidData', [11, 2]],
   ['巧克力白咖啡', [11, 20]],
@@ -16,7 +15,12 @@ const data: IBirthData[] = [
   ['Creeper_001', [10, 29]],
   ['lunathy', [12, 4]],
   ['Frac', [9, 29]],
-  ['Rysgj ', [10, 9]]
+  ['Rysgj ', [10, 9]],
+  ['Alphacodmyyds', [2,17]],
+  ['YFMonochrome', [8,1]],
+  ['The_Gh0st_', [9,1]],
+  ['Hileznx', [9,9]],
+  ['AlexZX15363', [2,8]]
 ]
 
 export const birthday = {
@@ -32,7 +36,11 @@ export const birthday = {
         pending.push(data[i][0])
       }
     }
-    const msg = `今天${month}月${day}日，是 <strong class="rainbow-text-color"> ${pending.join(',')} </strong> 的生日哦。祝他们生日快乐！`
+    if (!pending.length) {
+      console.log("今天并没有人生日哦……")
+      return
+    }
+    const msg = `今天${month}月${day}日，是 <strong class="rainbow-text-color"> ${pending.join(',')} </strong> 的生日哦。祝他（们）生日快乐！`
     Preinit.on_finish(() => modal.ShowInformationModal.show({ msg: msg }))
   }
 }

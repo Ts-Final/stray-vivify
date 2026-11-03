@@ -118,6 +118,11 @@
   user-select: all;
 }
 
+.header-wrapper .header-win-func {
+  position: absolute;
+  right: 0;
+  z-index: var(--z-header);
+}
 
 .header-active {
   background-color: #3c3e6e;
