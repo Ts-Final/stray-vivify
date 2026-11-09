@@ -220,7 +220,7 @@ export namespace utils {
     return Object.keys(obj) as (keyof T)[]
   }
   /* Max - Min */
-  export function range(...args: number[]) {
+  export function range(args: number[]) {
     return Math.max(...args) - Math.min(...args)
   }
   export function timer(cb: () => void, count = 1) {

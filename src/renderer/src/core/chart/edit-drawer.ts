@@ -20,6 +20,7 @@ const pointer_last = {
   y: 0
 }
 /**
+ * Pending Select shaDow
  * @property p Pending
  * @property s select
  * @property d shadow
@@ -154,7 +155,8 @@ class Pending {
       return NoteClipboard.clipboard.value.map((x) => {
         return {
           ...x,
-          time: this.time + x.time
+          time: this.time + x.time,
+          lane: this.lane + x.lane
         }
       })
     }
@@ -169,6 +171,7 @@ class Pending {
 
   get pending_width() {
     if (this.dragging) return this.dragging_width
+    else if (NoteClipboard.clipboard.value.length) return NoteClipboard.clipboard_width
     else return NoteType.w
   }
 
@@ -242,6 +245,7 @@ class Pending {
     this.hold_fixed = false
     this.len = 0
     this.hold_fixed_time = 0
+    NoteClipboard.clear()
     this.recreate()
     this.update_pending()
   }
@@ -270,7 +274,7 @@ class Pending {
     this.dragging_base_time = Math.min(...this.dragging_notes.map((x) => x.time))
     this.dragging_delta = note.time - this.dragging_base_time
     this.dragging_width = utils.range(
-      ...this.dragging_notes
+      this.dragging_notes
         .map((n) => {
           return [n.lane, n.lane + n.width]
         })
@@ -323,27 +327,30 @@ class Pending {
 
   copy() {
     if (!this.select) return
-    const to_note = this.diff.to_note
-    const min = Math.min(...NoteClipboard.selected.map((x) => to_note(x).time))
+    const minTime = Math.min(...NoteClipboard.selected.map((x) => x.time))
+    const minLane  = Math.min(...NoteClipboard.selected.map((x) => x.lane))
     NoteClipboard.clipboard.value = NoteClipboard.selected.map((x) => {
-      const note = to_note(x)
       return {
-        ...note,
-        time: note.time - min
+        ...x,
+        time: x.time - minTime,
+        lane: x.lane - minLane,
       }
     })
+    NoteClipboard.clipboard_width = utils.range(
+      NoteClipboard.selected.map((x) => [x.lane, x.lane + x.width]).flat()
+    )
     NoteClipboard.selected = []
+    RefreshAll.refresh('select')
+    psd.d?.recreate()
     this.recreate()
   }
   cut() {
     if (!this.select) return
-    const to_note = this.diff.to_note
-    const min = Math.min(...this.select_raw.map((x) => to_note(x).time))
+    const min = Math.min(...this.select_raw.map((x) => x.time))
     NoteClipboard.clipboard.value = this.select_raw.map((x) => {
-      const note = to_note(x)
       return {
-        ...note,
-        time: note.time - min
+        ...x,
+        time: x.time - min
       }
     })
     this.diff.remove_note_with_undo(...NoteClipboard.selected)
@@ -543,7 +550,7 @@ export function editable_note_drawer(this: DiffDrawer, chart: Chart) {
       }
     })
     sprite.on('mousedown', (ev) => {
-      console.log("sprite: mousedown")
+      console.log('sprite: mousedown')
       if (!ev.ctrlKey && !ev.altKey) pending.pre_drag_start()
       ev.stopPropagation()
     })
@@ -658,8 +665,8 @@ export function editable_note_drawer(this: DiffDrawer, chart: Chart) {
     this.app.canvas.addEventListener('mouseleave', mouseout)
     this.app.canvas.addEventListener('mousedown', (e) => {
       if (!chart.audio.paused) return
-      if (e.button == 2) pending.on_right()
-      if (e.button == 0) pending.on_click()
+      if (e.button == 2 || !e.ctrlKey) pending.on_right()
+      if (e.button == 0 || !e.ctrlKey) pending.on_click()
     })
     this.app.canvas.addEventListener('mouseup', (e) => {
       pending.drop()
