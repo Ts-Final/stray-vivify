@@ -116,7 +116,8 @@ export class Chart_diff extends StopClass {
   current_timing: ComputedRef<number>
   density_data: Ref<number[]>
   density_path: Ref<string>
-  density_updating: boolean = false
+  density_signal: AbortController = new AbortController()
+  density_last: Promise<string> | null = null
 
   on_operating: boolean
   operating_fns: (() => void)[]
@@ -124,7 +125,6 @@ export class Chart_diff extends StopClass {
   sr: Ref<ChartTypeV2.SongStats>
   max_lane: Ref<number>
   ai_mod = ref<[number, string][]>([])
-  #__density_abort = false
 
   constructor(chart: Chart, index?: number) {
     super()
@@ -413,7 +413,7 @@ export class Chart_diff extends StopClass {
     console.log('update_on_diff_index')
     this.chart.set_header_name()
     this.calc_density()
-    this.update_density_path(true)
+    this.update_density_path()
     this.update_timing_list()
     this.sort_notes()
     this.calc_max_lane()
@@ -422,21 +422,12 @@ export class Chart_diff extends StopClass {
     utils.nextFrame().then(() => this.force_fuck())
   }
 
-  async update_density_path(force = false) {
-    if (!force && this.density_updating) return
-    if (force && this.density_updating) {
-      this.#__density_abort = true
-      await new Promise<void>((resolve) => {
-        const check = () => {
-          if (!this.density_updating) {
-            resolve()
-          } else {
-            utils.nextFrame().then(check)
-          }
-        }
-        check()
-      })
-      this.#__density_abort = false
+  // dontInterrupt: assign to true to not interrupt user's click
+  async update_density_path(dontInterrupt: boolean = false) {
+    if (this.density_last) {
+      if (dontInterrupt) return
+      this.density_signal.abort('hahahaha the new one has came')
+      console.log(await this.density_last)
     }
     const path = this.density_path
     const data = this.density_data
@@ -444,21 +435,20 @@ export class Chart_diff extends StopClass {
     const max = utils.reduce_max(toRaw(data.value))
     if (data.value.findIndex((v) => v > 0) == -1) return
     const dx = 300 / data.value.length
-    const dt = 1500 / data.value.length
-
-    this.density_updating = true
+    const dt = dontInterrupt ? 0 : dx * 5
     const d = utils.deepCopy(toRaw(data.value))
-    for (let i = 0; i < d.length; i++) {
-      if (this.#__density_abort) {
-        this.#__density_abort = false
-        this.density_updating = false
-        return
+
+    this.density_signal = new AbortController()
+    const signal = this.density_signal.signal
+    this.density_last = (async () => {
+      for (let i = 0; i < d.length; i++) {
+        if (signal.aborted) return '[density path] aborted'
+        const y = 240 - Math.floor((d[i] / max) * 230)
+        path.value += `L ${(dx * i + 20).toFixed(3)} ${y} `
+        await utils.wait(dt)
       }
-      const y = 240 - Math.floor((d[i] / max) * 230)
-      path.value += `L ${(dx * i + 20).toFixed(3)} ${y}`
-      await new Promise((r) => setTimeout(r, dt))
-    }
-    this.density_updating = false
+      return '[density path] fulfilled'
+    })()
   }
 
   calc_max_lane() {
@@ -800,7 +790,6 @@ export class Chart_diff extends StopClass {
       d[i] = (d[i] / per_length) * 1000
     }
     this.density_data.value = d.slice(0, max_count)
-    console.log(this.density_data.value)
     FrameRate.calc_density.end()
   }
 

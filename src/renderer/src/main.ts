@@ -92,6 +92,8 @@ async function main() {
       if (Storage.settings.auto_save) Chart.current?.save()
       Chart.current?.diff.update_tick_list()
       Chart.current?.diff.check_aimod()
+      Chart.current?.diff.calc_density()
+      Chart.current?.diff.update_density_path(true)
     })
     Intervals.on(1000, () => {
       Chart.current?.diff.update_diff_counts()
