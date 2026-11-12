@@ -112,6 +112,7 @@ async function main() {
     requestAnimationFrame(update_per_frame)
     Preinit.Stages.animation_frame = true
     await Skin.check_skin()
+    await Skin.load_css()
     Preinit.Stages.check_skin = true
   })
 

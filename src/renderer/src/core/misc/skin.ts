@@ -56,6 +56,20 @@ export namespace Skin {
   export let BaseWidth =  130
   export let BaseHeight = 43
   export function height(width: number) {
-    return Math.round(width / BaseWidth * BaseHeight)
+    return Math.round((width / BaseWidth) * BaseHeight)
+  }
+
+  export async function load_css() {
+    try {
+      const r = await fetch('stray:/__skin__/skin.css')
+      if (!r.ok) throw new Error('no css')
+
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = 'stray:/__skin__/skin.css'
+      document.head.appendChild(link);
+    } catch (e) {
+      console.log("skin.css not found")
+    }
   }
 }

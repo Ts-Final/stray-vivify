@@ -95,6 +95,7 @@ const title = computed(() => H2P_ARTICLES.find((x) => x.id === id.value)?.title 
     4h.png
     4s.png
     hit.{mp3,ogg,wav,m4a}
+    skin.css
           </pre>
           <p>其中，各个文件的用途：</p>
           <p><code>数字</code>标识其贴图用于多宽的note。</p>
@@ -105,6 +106,7 @@ const title = computed(() => H2P_ARTICLES.find((x) => x.id === id.value)?.title 
             <code>h</code>对应ln面身。面头使用与（该处）等宽的note的同样的贴图。
             <strong>分左右！</strong>
           </p>
+          <p><code>skin.css</code>可选，能覆盖sv的默认外观。</p>
           <h3>hit</h3>
           <p>打击音效。在默认皮肤包中不被提供。</p>
           <p>可使用的后缀已经列出。根据Creeper的pr，使用wav应当是延迟最低的一个。</p>
