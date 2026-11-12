@@ -72,8 +72,8 @@ const tab = route.tab
             设置
           </div>
           <div class="h-menu-btn-text" @click="do_refresh">刷新</div>
-          <div class="h-menu-btn-text" @click="close_chart">关闭文件</div>
           <div class="h-menu-btn-text" @click="modal.H2PModal.show({})">帮助</div>
+          <div class="h-menu-btn-text" @click="close_chart">关闭文件</div>
         </div>
       </div>
       <div :class="is_active(tab, 0)" class="header-menu-ul" @click="tab = 0">
