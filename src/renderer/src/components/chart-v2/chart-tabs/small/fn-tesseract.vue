@@ -3,6 +3,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { Application, Assets, Container, PerspectiveMesh, Texture } from 'pixi.js'
 import 'pixi.js/gif'
 import type { GifSource } from 'pixi.js/gif'
+import { Intervals } from '@renderer/core/misc/intervals'
 
 // ---------- Props ----------
 interface Props {
@@ -110,32 +111,58 @@ function getFirstFrameTexture(src: unknown): Texture {
 // ---------- 组件状态 ----------
 const hostRef = ref<HTMLDivElement | null>(null)
 let app: Application | null = null
+let appReady = false
 let destroyed = false
 let tickerCallback: (() => void) | null = null
-let rafId: number | null = null
+
+function stopTicker() {
+  if (tickerCallback) {
+    Intervals.off(33, tickerCallback)
+    tickerCallback = null
+  }
+}
+
+function destroyApp() {
+  const application = app
+  app = null
+  appReady = false
+  if (!application) return
+  stopTicker()
+  application.canvas?.remove()
+  // 注意：这里不能把 true 作为 destroy 的第一个参数。
+  // 在 PixiJS 8.2x 中它等价于 releaseGlobalResources，
+  // 会清空全局纹理池，把其他组件仍在使用的纹理一并销毁，
+  // 从而出现 "destroyed while still bound to a shader" 警告。
+  application.destroy({ removeView: true }, { children: true })
+}
 
 onMounted(async () => {
-  if (!hostRef.value) return
+  const host = hostRef.value
+  if (!host) return
 
   // ---------- PixiJS 四维 ----------
-  app = new Application()
-  await app.init({
+  const application = new Application()
+  app = application
+  await application.init({
+    backgroundAlpha: 0,
     background: 'transparent',
-    resizeTo: hostRef.value,
+    resizeTo: host,
     antialias: true,
     autoDensity: true,
-    resolution: window.devicePixelRatio || 1,
-    backgroundAlpha: 0
+    resolution: window.devicePixelRatio || 1
   })
+
+  // init 期间组件已经被卸载，此时才能安全销毁
   if (destroyed) {
-    app.destroy(true)
-    app = null
+    if (app === application) destroyApp()
     return
   }
-  hostRef.value.appendChild(app.canvas)
+
+  appReady = true
+  host.appendChild(application.canvas)
 
   const raw = await Assets.load(props.textureSrc)
-  if (destroyed) return
+  if (destroyed || app !== application) return
   const texture = getFirstFrameTexture(raw)
 
   const cube4 = new Container()
@@ -163,7 +190,7 @@ onMounted(async () => {
   let start: number | null = null
 
   tickerCallback = () => {
-    if (!app) return
+    if (!app || destroyed) return
     const now = performance.now()
     if (start === null) start = now
     const t = (now - start) / 1000
@@ -206,18 +233,14 @@ onMounted(async () => {
     cube4.sortChildren()
   }
 
-  app.ticker.add(tickerCallback)
+  Intervals.on(33, tickerCallback)
 })
 
 onBeforeUnmount(() => {
   destroyed = true
-  if (rafId !== null) cancelAnimationFrame(rafId)
-  if (app) {
-    if (tickerCallback) app.ticker.remove(tickerCallback)
-    app.destroy(true, { children: true })
-    app = null
-  }
-  tickerCallback = null
+  // init 尚未完成时不在这里销毁，交给 onMounted 里的收尾逻辑处理，
+  // 避免在 Application 半初始化状态下调用 destroy。
+  if (appReady) destroyApp()
 })
 </script>
 <template>
