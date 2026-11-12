@@ -17,14 +17,14 @@ function add_artist() {
 <template>
   <div>曲师列表</div>
   <div class="custom-artist-input">
-    <div v-for="(artist, i) in bind" class="single-artist" @click="rm_artist(i)">
+    <div v-for="(artist, i) in bind" class="custom-artist-single" @click="rm_artist(i)">
       {{ artist }}
     </div>
     <input v-model="input" placeholder="按enter以添加" type="text" @keyup.enter="add_artist" />
   </div>
 </template>
 
-<style scoped>
+<style>
 .custom-artist-input {
   display: flex;
   flex-direction: row;
@@ -34,7 +34,7 @@ function add_artist() {
   gap: 0 5px;
 }
 
-.single-artist {
+.custom-artist-single {
   background: rgba(20, 30, 40, 0.6);
   backdrop-filter: blur(10px);
   padding-right: 1.1rem;
@@ -43,7 +43,7 @@ function add_artist() {
   height: 1.5rem;
 }
 
-.single-artist::after {
+.custom-artist-single::after {
   content: '×';
   position: absolute;
   right: 0;
@@ -55,11 +55,11 @@ function add_artist() {
   text-align: center;
   color: #b8dcee;
 }
-.single-artist:hover::after {
+.custom-artist-single:hover::after {
   background: #b8dcee;
   color: black;
 }
-input {
+.custom-artist-input input {
   line-height: 1rem;
   font-size: 1rem;
   flex-grow: 1;
@@ -72,7 +72,7 @@ input {
   border-bottom: 1px solid transparent;
   height: 1.5rem;
 }
-input:focus {
+.custom-artist-input input:focus {
   border-bottom: 1px solid var(--grey);
 }
 </style>

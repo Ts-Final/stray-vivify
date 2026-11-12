@@ -50,8 +50,8 @@ const show_beat_time = computed(
     </template>
   </div>
 </template>
-<style scoped>
-input {
+<style>
+.fn-time input {
   width: 100%;
 }
 

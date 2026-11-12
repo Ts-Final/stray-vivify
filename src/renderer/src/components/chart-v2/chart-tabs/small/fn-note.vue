@@ -37,41 +37,41 @@ const mt = (note: ChartTypeV2.note) => 'len' in note ? note.len + note.time : no
 </script>
 
 <template>
-  <div class="notes">
+  <div class="fn-note-list">
     <small-diff-choice />
     <small-ref-choice />
-    <div class="note-width">
+    <div class="fn-note-width">
       <span>note宽</span>
       <div
-        :class="width == 1 ? 'chosen' : ''"
-        class="note-width-btn"
+        :class="width == 1 ? 'fn-note-chosen' : ''"
+        class="fn-note-width-btn"
         @click="NoteType.set_width(1)"
       >
         1
       </div>
       <div
-        :class="width == 2 ? 'chosen' : ''"
-        class="note-width-btn"
+        :class="width == 2 ? 'fn-note-chosen' : ''"
+        class="fn-note-width-btn"
         @click="NoteType.set_width(2)"
       >
         2
       </div>
       <div
-        :class="width == 3 ? 'chosen' : ''"
-        class="note-width-btn"
+        :class="width == 3 ? 'fn-note-chosen' : ''"
+        class="fn-note-width-btn"
         @click="NoteType.set_width(3)"
       >
         3
       </div>
       <div
-        :class="width == 4 ? 'chosen' : ''"
-        class="note-width-btn"
+        :class="width == 4 ? 'fn-note-chosen' : ''"
+        class="fn-note-width-btn"
         @click="NoteType.set_width(4)"
       >
         4
       </div>
     </div>
-    <div class="note-snb">
+    <div class="fn-note-snb">
       <s>SBLN</s>
       <div>
         <a-checkbox v-model="s"></a-checkbox>
@@ -86,8 +86,8 @@ const mt = (note: ChartTypeV2.note) => 'len' in note ? note.len + note.time : no
         长条
       </div>
     </div>
-    <div v-if="width == 0" :key="rkey" class="note-select-wrapper">
-      <div v-if="select().length == 0" class="note-select">Select</div>
+    <div v-if="width == 0" :key="rkey" class="fn-note-select-wrapper">
+      <div v-if="select().length == 0" class="fn-note-select">Select</div>
       <div v-else>
         <div>
           <div>已选中 {{ select().length }}</div>
@@ -109,7 +109,7 @@ const mt = (note: ChartTypeV2.note) => 'len' in note ? note.len + note.time : no
         </div>
       </div>
     </div>
-    <div v-else class="note-pending">
+    <div v-else class="fn-note-pending">
       <img
         :alt="NoteProps.base_src(pending_note)"
         :src="NoteProps.getSrc(pending_note)"
@@ -119,8 +119,8 @@ const mt = (note: ChartTypeV2.note) => 'len' in note ? note.len + note.time : no
   </div>
 </template>
 
-<style scoped>
-.notes {
+<style>
+.fn-note-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -128,63 +128,63 @@ const mt = (note: ChartTypeV2.note) => 'len' in note ? note.len + note.time : no
   padding-top: 10px;
 }
 
-.note-width {
+.fn-note-width {
   display: grid;
   grid-template-columns: 2fr repeat(4, 1fr);
   gap: 5px;
 }
 
-.note-width > div,
-.note-width > span,
-.note-snb > div,
-.note-snb > s {
+.fn-note-width > div,
+.fn-note-width > span,
+.fn-note-snb > div,
+.fn-note-snb > s {
   text-align: center;
   line-height: 1.5rem;
   height: 1.5rem;
 }
 
-.note-width > div {
+.fn-note-width > div {
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.note-width > div:hover,
-.chosen {
+.fn-note-width > div:hover,
+.fn-note-chosen {
   background: var(--button-hover);
 }
 
-.note-snb {
+.fn-note-snb {
   display: grid;
   grid-template-columns: 3fr 2fr 2fr 2fr;
   gap: 5px;
 }
 
-.note-pending {
+.fn-note-pending {
   display: flex;
   position: relative;
   justify-content: center;
 }
 
-.note-pending > img {
+.fn-note-pending > img {
   position: relative;
   max-width: 90%;
 }
 
-.note-select-wrapper {
+.fn-note-select-wrapper {
   width: 100%;
   text-align: center;
 }
 
-.note-select {
+.fn-note-select {
   color: gray;
   font-style: italic;
 }
 
-.counter-inner div:nth-child(2n + 1) {
+.fn-note-counter-inner div:nth-child(2n + 1) {
   text-align: right;
 }
 
-.counter-inner div:nth-child(2n + 2) {
+.fn-note-counter-inner div:nth-child(2n + 2) {
   text-align: left;
 }
 </style>

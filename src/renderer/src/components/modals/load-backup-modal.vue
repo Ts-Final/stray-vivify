@@ -58,7 +58,7 @@ async function show_backup() {
   </simple-modal>
 </template>
 
-<style scoped>
+<style>
 .backup-contain {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;

@@ -46,7 +46,7 @@ ChartSize.update()
   <div v-else class="disk-wrapper-loading">Loading.......</div>
 </template>
 
-<style scoped>
+<style>
 .disk-wrapper {
   display: grid;
   grid-template-columns: 1fr 2fr;

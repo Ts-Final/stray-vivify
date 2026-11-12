@@ -31,7 +31,7 @@ onUnmounted(() => {
   </span>
 </template>
 
-<style scoped>
+<style>
 .word-helper {
   text-decoration: underline #b8dcee 1px;
   cursor: help;

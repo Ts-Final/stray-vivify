@@ -26,7 +26,7 @@ function close() {
   </div>
 </template>
 
-<style scoped>
+<style>
 .header-win-func {
   height: 100%;
   -webkit-app-region: no-drag;

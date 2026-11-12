@@ -33,8 +33,8 @@ function start_diff_drag(ix: number) {
 
 <template>
   <div v-if="phase == 0" class="custom-diff">
-    <div class="diff-left">
-      <span class="grid-2-header">
+    <div class="custom-diff-left">
+      <span class="custom-diff-header">
         <word-helper dec="点击下面方框以删除选择，可以覆盖" msg="从右侧拖动diff！" />
       </span>
       <template v-for="(ix, i) in STR">
@@ -54,10 +54,10 @@ function start_diff_drag(ix: number) {
         @click="emit('next')"
       />
     </div>
-    <div class="diff-right">
+    <div class="custom-diff-right">
       <div
         v-for="(diff, ix) in chart.chart.diffs"
-        class="diff-single"
+        class="custom-diff-single"
         draggable="true"
         @dragstart="start_diff_drag(ix)"
       >
@@ -69,13 +69,13 @@ function start_diff_drag(ix: number) {
   </div>
 </template>
 
-<style scoped>
+<style>
 .custom-diff {
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 2fr;
 }
-.diff-left {
+.custom-diff-left {
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: center;
@@ -85,18 +85,18 @@ function start_diff_drag(ix: number) {
   margin-top: 50px;
   padding-left: 25px;
 }
-.grid-2-header {
+.custom-diff-header {
   grid-column: 1 / span 2;
   padding-bottom: 15px;
   font-weight: bold;
 }
-.diff-left div:nth-child(2n + 1) {
+.custom-diff-left div:nth-child(2n + 1) {
   border: #b8dcee 2px solid;
   width: 15rem;
   height: 3rem;
   line-height: 3rem;
 }
-.diff-single {
+.custom-diff-single {
   width: 100%;
   height: min-content;
   display: grid;
@@ -104,14 +104,14 @@ function start_diff_drag(ix: number) {
   border: 1px solid #b8dcee;
   padding: 5px;
 }
-.diff-single :nth-child(1) {
+.custom-diff-single :nth-child(1) {
   grid-area: a;
 }
-.diff-single :nth-child(2) {
+.custom-diff-single :nth-child(2) {
   grid-area: b;
   font-size: 0.9rem;
 }
-.diff-single :nth-child(3) {
+.custom-diff-single :nth-child(3) {
   grid-area: c;
   font-size: 0.8rem;
   opacity: 0.8;

@@ -91,7 +91,7 @@ const chart_state = route.tab
   </div>
 </template>
 
-<style scoped>
+<style>
 .chart-v2-wrapper {
   width: 100%;
   height: 100vh;

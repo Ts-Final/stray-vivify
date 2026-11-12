@@ -18,69 +18,69 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :class="`size-${props.size}`" class="vue-modal-content">
-    <div v-if="props.title || props.showClose" class="vue-modal-header">
+  <div :class="`simple-modal-size-${props.size}`" class="simple-modal-content">
+    <div v-if="props.title || props.showClose" class="simple-modal-header">
       <slot name="header">
-        <h1 v-if="props.title" class="vue-modal-title">{{ props.title }}</h1>
+        <h1 v-if="props.title" class="simple-modal-title">{{ props.title }}</h1>
       </slot>
       <button
         v-if="props.showClose"
         aria-label="Close"
-        class="vue-modal-btn-close"
+        class="simple-modal-btn-close"
         @click="closeModal()"
       >
         &times;
       </button>
     </div>
 
-    <div class="vue-modal-body">
+    <div class="simple-modal-body">
       <slot></slot>
     </div>
 
-    <div v-if="slots.footer" class="vue-modal-footer">
+    <div v-if="slots.footer" class="simple-modal-footer">
       <slot name="footer"></slot>
     </div>
   </div>
 </template>
 
-<style scoped>
-.vue-modal-content {
+<style>
+.simple-modal-content {
   background: var(--blue-bgi);
   border-radius: 0.5rem;
   font-family: inherit;
   color: black;
 
-  &.size-1 {
+  &.simple-modal-size-1 {
     width: 100%;
     max-width: 35vw;
   }
 
-  &.size-2 {
+  &.simple-modal-size-2 {
     width: 100%;
     max-width: 45vw;
   }
 
-  &.size-3 {
+  &.simple-modal-size-3 {
     width: 100%;
     max-width: 55vw;
   }
 
-  &.size-4 {
+  &.simple-modal-size-4 {
     width: 100%;
     max-width: 65vw;
   }
 
-  &.size-5 {
+  &.simple-modal-size-5 {
     width: 100%;
     max-width: 75vw;
   }
-  &.size-6 {
+  &.simple-modal-size-6 {
     width: 100%;
     max-width: 85vw;
   }
 }
 
-.vue-modal-header {
+.simple-modal-header {
   padding: 0.5rem 1rem;
   display: flex;
   flex-shrink: 0;
@@ -92,14 +92,14 @@ const props = defineProps({
   background: var(--purple-bgi);
 }
 
-.vue-modal-title {
+.simple-modal-title {
   font-size: 1.25rem;
   font-weight: 500;
   margin: 0;
   user-select: none;
 }
 
-.vue-modal-btn-close {
+.simple-modal-btn-close {
   opacity: 0.5;
   width: 2rem;
   height: 2rem;
@@ -116,11 +116,11 @@ const props = defineProps({
   }
 }
 
-.vue-modal-body {
+.simple-modal-body {
   padding: 1rem;
 }
 
-.vue-modal-footer {
+.simple-modal-footer {
   padding: 1rem;
   display: flex;
   flex-wrap: wrap;
@@ -130,7 +130,7 @@ const props = defineProps({
   border-top: 1px solid #dee2e6;
   gap: 0.25rem;
 
-  & > :deep(*) {
+  & > * {
     margin: 0.25rem;
   }
 }

@@ -224,12 +224,12 @@ function random_tip() {
           <a-text-input v-model="search" class="charts-input" placeholder="点击输入文字！" />
           <div>{{ shown.length }} 结果</div>
         </div>
-        <div class="importer">
+        <div class="sd-importer">
           <a-button2 msg="导入曲目" @click="import_chart" />
         </div>
       </div>
       <div class="charts-wrapper">
-        <TransitionGroup>
+        <TransitionGroup name="cu">
           <div
             v-for="chart in shown"
             :key="chart.id"
@@ -265,7 +265,7 @@ function random_tip() {
   </div>
 </template>
 
-<style scoped>
+<style>
 .chart-list-wrapper {
   display: grid;
   grid-template-columns: 45vw 55vw;
@@ -388,7 +388,7 @@ function random_tip() {
   padding-left: 25px;
 }
 
-.importer {
+.sd-importer {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -506,14 +506,14 @@ function random_tip() {
   box-shadow: red 0 0 4px;
 }
 
-.v-move, /* 对移动中的元素应用的过渡 */
-.v-enter-active,
-.v-leave-active {
+.cu-move, /* 对移动中的元素应用的过渡 */
+.cu-enter-active,
+.cu-leave-active {
   transition: all 0.3s ease;
 }
 
-.v-enter-from,
-.v-leave-to {
+.cu-enter-from,
+.cu-leave-to {
   opacity: 0;
   transform: translateX(50px);
 }

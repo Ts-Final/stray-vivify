@@ -54,7 +54,7 @@ defineExpose({ drawer: drawer })
 .pixi-container {
   position: relative;
 }
-.chart-main .pixi-container canvas {
+.pixi-container canvas {
   position: absolute;
   bottom: 2rem;
 }

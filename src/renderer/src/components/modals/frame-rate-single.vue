@@ -6,7 +6,7 @@ const r = props.r.refs
 </script>
 
 <template>
-  <tr>
+  <tr class="frame-rate-single">
     <td>{{ msg }}</td>
     <td>{{ r.min.toFixed(1) }}/{{ r.max.toFixed(1) }}</td>
     <td>{{ r.avg.toFixed(2) }}</td>
@@ -16,8 +16,8 @@ const r = props.r.refs
   </tr>
 </template>
 
-<style scoped>
-td {
+<style>
+.frame-rate-single td {
   border: 1px solid white;
 }
 </style>

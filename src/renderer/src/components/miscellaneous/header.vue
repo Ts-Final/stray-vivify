@@ -68,7 +68,7 @@ async function import_mcz() {
   </div>
 </template>
 
-<style scoped>
+<style>
 .h-menu-btn-i > .h-menu-btn-text {
   font-size: 1rem;
   text-align: center;

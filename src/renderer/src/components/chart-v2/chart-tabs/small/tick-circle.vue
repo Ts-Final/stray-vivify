@@ -44,34 +44,34 @@ EventHub.use('fuck-shown', () => {
 </script>
 
 <template>
-  <div v-if="show_circle" class="pf-circles">
-    <div class="circles-left">
-      <img alt="" class="ticks-icon" src="/yq.jpg" />
-      <div class="circles-sv">stray/vivify</div>
-      <div class="circles-timing">
+  <div v-if="show_circle" class="tick-circle-wrapper">
+    <div class="tick-circle-left">
+      <img alt="" class="tick-circle-icon" src="/yq.jpg" />
+      <div class="tick-circle-sv">stray/vivify</div>
+      <div class="tick-circle-timing">
         <div>BPM</div>
         <div>{{ current_timing.bpm.toPrecision(5) }}</div>
         <div>#{{ current_timing_ix + 1 }}/{{ timing_length }}</div>
       </div>
     </div>
-    <div class="circles-right">
-      <div class="circles-line" />
-      <div class="circles-divider" />
-      <div :key="key" class="circles-tick">
+    <div class="tick-circle-right">
+      <div class="tick-circle-line" />
+      <div class="tick-circle-divider" />
+      <div :key="key" class="tick-circle-ticks">
         <div
           v-for="[tm, tick] in shown_t.ticks"
           :style="time_left(current_time, tm)"
-          class="circles-single"
+          class="tick-circle-single"
         >
-          <div :style="circle_color(tick)" class="circle" />
-          <div v-if="tick != 0" class="circle-tick">
+          <div :style="circle_color(tick)" class="tick-circle-dot" />
+          <div v-if="tick != 0" class="tick-circle-tick-number">
             {{ tick }}
           </div>
         </div>
         <div
           v-for="t in shown_timing"
           :style="time_left(current_time, t.time)"
-          class="circle-timing-line"
+          class="tick-circle-timing-line"
         >
           {{ t.bpm }}
         </div>
@@ -80,8 +80,8 @@ EventHub.use('fuck-shown', () => {
   </div>
 </template>
 
-<style scoped>
-.pf-circles {
+<style>
+.tick-circle-wrapper {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -92,7 +92,7 @@ EventHub.use('fuck-shown', () => {
   background: #000000;
   border-top: 2px solid white;
 }
-.circles-left {
+.tick-circle-left {
   padding-left: 15px;
   padding-right: 15px;
   display: grid;
@@ -100,18 +100,18 @@ EventHub.use('fuck-shown', () => {
   background: var(--dark-bgi);
   justify-items: center;
 }
-.ticks-icon {
+.tick-circle-icon {
   width: 50px;
   justify-self: center;
   grid-area: a;
 }
-.circles-sv {
+.tick-circle-sv {
   grid-area: b;
   color: gray;
   font-size: 12px;
   text-align: center;
 }
-.circles-timing {
+.tick-circle-timing {
   grid-area: c;
   display: grid;
   padding-top: 5px;
@@ -120,30 +120,30 @@ EventHub.use('fuck-shown', () => {
   padding-left: 15px;
   max-width: 6rem;
 }
-.circles-right {
+.tick-circle-right {
   flex-grow: 1;
   overflow: hidden;
   position: relative;
 }
-.circles-tick {
+.tick-circle-ticks {
   width: 100%;
   position: relative;
   height: 100%;
 }
-.circles-line {
+.tick-circle-line {
   width: 5px;
   height: 100%;
   background: #fff;
   position: absolute;
   left: 50px;
 }
-.circles-single {
+.tick-circle-single {
   display: flex;
   position: absolute;
   height: 100%;
   justify-content: center;
 }
-.circle {
+.tick-circle-dot {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -152,12 +152,12 @@ EventHub.use('fuck-shown', () => {
   position: absolute;
   top: 20px;
 }
-.circle-tick {
+.tick-circle-tick-number {
   bottom: 2px;
   font-size: 0.9rem;
   position: absolute;
 }
-.circle-timing-line {
+.tick-circle-timing-line {
   background: white;
   color: black;
   width: min-content;

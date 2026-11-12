@@ -47,11 +47,12 @@ function wheel(e: WheelEvent) {
     :max="max"
     @input="handleInput"
     @wheel.passive.prevent="wheel"
+    class="a-number-input"
   />
 </template>
 
-<style scoped>
-input {
+<style>
+input.a-number-input {
   background-color: transparent;
   outline: none;
   border: none;
@@ -61,15 +62,15 @@ input {
   border-bottom: 1px solid transparent;
   box-sizing: border-box;
 }
-input:focus {
+input.a-number-input:focus {
   border-bottom: 1px solid var(--grey);
 }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input.a-number-input::-webkit-outer-spin-button,
+input.a-number-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[disabled] {
+input.a-number-input[disabled] {
   cursor: not-allowed;
   opacity: 0.6;
 }

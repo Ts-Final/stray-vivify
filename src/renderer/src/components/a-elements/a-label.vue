@@ -11,14 +11,14 @@ const { label } = defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style>
 .a-label {
   display: flex;
   align-items: flex-start;
   width: min-content;
   margin-left: 0.5em;
 }
-span {
+.a-label span {
   text-wrap: nowrap;
   text-align: left;
   vertical-align: center;

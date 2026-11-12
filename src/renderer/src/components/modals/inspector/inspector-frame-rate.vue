@@ -29,9 +29,9 @@ onUnmounted(() => Intervals.off(1000, update_memory))
 </script>
 
 <template>
-  <div class="fr-wrapper">
-    <div class="fr-header">Frame Rate</div>
-    <table class="fr-table">
+  <div class="inspector-fr-wrapper">
+    <div class="inspector-fr-header">Frame Rate</div>
+    <table class="inspector-fr-table">
       <tbody>
         <tr>
           <th style="width: max-content">函数</th>
@@ -68,8 +68,8 @@ onUnmounted(() => Intervals.off(1000, update_memory))
       </tbody>
     </table>
 
-    <div class="fr-header">Memory Usage</div>
-    <div class="memory-wrapper">
+    <div class="inspector-fr-header">Memory Usage</div>
+    <div class="inspector-fr-memory-wrapper">
       <div>
         <span>Vue</span>
         <div>可用</div>
@@ -94,8 +94,8 @@ onUnmounted(() => Intervals.off(1000, update_memory))
       </div>
     </div>
 
-    <div class="fr-header">Update Rate</div>
-    <table class="fr-table">
+    <div class="inspector-fr-header">Update Rate</div>
+    <table class="inspector-fr-table">
       <tbody>
         <tr>
           <th>Key</th>
@@ -120,51 +120,51 @@ onUnmounted(() => Intervals.off(1000, update_memory))
   </div>
 </template>
 
-<style scoped>
-.fr-wrapper {
+<style>
+.inspector-fr-wrapper {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   overflow: auto;
   user-select: none;
 }
-.fr-header {
+.inspector-fr-header {
   width: 100%;
   text-align: center;
   line-height: 3rem;
   font-size: 1.5rem;
   font-weight: bold;
 }
-.fr-table {
+.inspector-fr-table {
   width: 90%;
   margin-left: 5%;
   text-align: center;
   border-collapse: collapse;
   table-layout: fixed;
 }
-td {
+.inspector-fr-table td {
   border: 1px solid white;
 }
-.fr-table tr:first-child {
+.inspector-fr-table tr:first-child {
   line-height: 1.4rem;
 }
-.memory-wrapper {
+.inspector-fr-memory-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   user-select: none;
 }
-.memory-wrapper > div {
+.inspector-fr-memory-wrapper > div {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.memory-wrapper > div > span {
+.inspector-fr-memory-wrapper > div > span {
   width: 100%;
   grid-column: 2;
 }
-.memory-wrapper > div > div {
+.inspector-fr-memory-wrapper > div > div {
   padding: 0 5px;
 }
-.memory-wrapper > div > div:nth-child(2n) {
+.inspector-fr-memory-wrapper > div > div:nth-child(2n) {
   text-align: right;
 }
 </style>

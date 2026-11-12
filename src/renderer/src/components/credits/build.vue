@@ -49,8 +49,9 @@ function toDate(y: string | number, m: string | number, d: string | number) {
   </div>
 </template>
 
-<style scoped>
-* {
+<style>
+.builds,
+.builds * {
   user-select: none;
   word-break: break-all;
 }
@@ -102,7 +103,7 @@ function toDate(y: string | number, m: string | number, d: string | number) {
   left: 0;
   margin-bottom: 10px;
 }
-div[data-is-current-version='true'] {
+.builds[data-is-current-version='true'] {
   box-shadow: 0 0 5px 2px white inset;
   padding: 10px;
   border-radius: 10px;

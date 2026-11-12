@@ -3,11 +3,11 @@ const model = defineModel()
 </script>
 
 <template>
-  <input v-model="model" spellcheck="false" type="text" />
+  <input class="a-text-input" v-model="model" spellcheck="false" type="text" />
 </template>
 
-<style scoped>
-input {
+<style>
+input.a-text-input {
   background-color: transparent;
   outline: none;
   border: none;
@@ -16,10 +16,10 @@ input {
   text-align: center;
   border-bottom: 1px solid transparent;
 }
-input:focus {
+input.a-text-input:focus {
   border-bottom: 1px solid var(--grey);
 }
-input[disabled] {
+input.a-text-input[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
 }

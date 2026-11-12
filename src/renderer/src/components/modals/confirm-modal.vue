@@ -17,5 +17,3 @@ const { msg } = defineProps<{
     </template>
   </SimpleModal>
 </template>
-
-<style scoped></style>

@@ -73,8 +73,8 @@ function write_gml() {
   </div>
 </template>
 
-<style scoped>
-.vsc-loader-header {
+<style>
+.iexporter-gml-header {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }

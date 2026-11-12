@@ -15,7 +15,7 @@ const { word, shown, position } = WordHelper
   </transition>
 </template>
 
-<style scoped>
+<style>
 .word-helper-overlay {
   position: absolute;
   z-index: var(--z-word-helper);

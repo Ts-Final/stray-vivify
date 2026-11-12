@@ -12,15 +12,15 @@ const { name, disabled } = defineProps<{ name: string; disabled?: boolean }>()
   </div>
 </template>
 
-<style scoped>
+<style>
 .sis-input {
   border-bottom: 1px solid #b8dcee77;
   width: 90%;
 }
-div {
+.song-info-single div {
   user-select: none;
 }
-div[data-disabled='true'] {
+.song-info-single div[data-disabled='true'] {
   opacity: 0.6;
 }
 </style>

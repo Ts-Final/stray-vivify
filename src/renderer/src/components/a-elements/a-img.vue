@@ -9,5 +9,3 @@ defineProps<{ src: string }>()
   <img v-bind="$attrs" v-if="shown" :src="src" alt="" @error="shown = false" />
   <slot v-else v-bind="$attrs"></slot>
 </template>
-
-<style scoped></style>

@@ -11,7 +11,7 @@ import Credits from '@renderer/components/credits/credits.vue'
   </SimpleModal>
 </template>
 
-<style scoped>
+<style>
 .credits-wrapper {
   overflow-y: auto;
   min-height: 60vh;

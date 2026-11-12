@@ -28,7 +28,7 @@ const right_fns = computed(() => fn_components(fn_tabs.value.right))
   </div>
 </template>
 
-<style scoped>
+<style>
 .chart-main {
   display: flex;
   flex-direction: row;

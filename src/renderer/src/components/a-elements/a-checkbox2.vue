@@ -8,7 +8,7 @@ const v = defineModel<boolean>()
   </div>
 </template>
 
-<style scoped>
+<style>
 .a-checkbox2 {
   position: relative;
   width: 2rem;

@@ -67,11 +67,11 @@ const total = computed(() => utils.toTimeStr(Storage.data.value.statistics.used_
   </div>
 </template>
 
-<style scoped>
-a {
+<style>
+.credits-list a {
   color: #b8dcee;
 }
-a:visited {
+.credits-list a:visited {
   color: #b8dcee;
 }
 .credits-list {

@@ -36,7 +36,7 @@ onMounted(() => {
   </SimpleModal>
 </template>
 
-<style scoped>
+<style>
 #id-input-box {
   width: 90%;
 }

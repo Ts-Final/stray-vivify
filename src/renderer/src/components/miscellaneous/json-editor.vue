@@ -248,7 +248,7 @@ export default defineComponent({
   }
 })
 </script>
-<style scoped>
+<style>
 .json-tree-editor {
   font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
   font-size: 13px;

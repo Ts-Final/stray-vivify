@@ -8,7 +8,7 @@ const { msg } = defineProps<{ msg: string }>()
   </tr>
 </template>
 
-<style scoped>
+<style>
 .sc-header {
   height: 2rem;
   line-height: 2rem;

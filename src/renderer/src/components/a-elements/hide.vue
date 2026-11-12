@@ -18,19 +18,14 @@ const shown = ref(props.def)
 </script>
 
 <template>
-  <div class="-hide-header" @click="shown = !shown">
+  <div class="hide-header" @click="shown = !shown">
     {{ props.title }} {{ shown ? '&#128899;' : '&#128897;' }}
   </div>
   <slot v-if="shown"></slot>
 </template>
 
-<style scoped>
-.-hide {
-  width: unset;
-  height: unset;
-  position: static;
-}
-.-hide-header {
+<style>
+.hide-header {
   width: 100%;
   line-height: 3rem;
   border-bottom: 1px solid #b8dcee;

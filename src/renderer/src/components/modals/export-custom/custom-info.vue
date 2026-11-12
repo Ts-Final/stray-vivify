@@ -20,8 +20,8 @@ defineProps<{
 
 <template>
   <div class="custom-info">
-    <div class="json-info">
-      <div class="grid-2-header">曲目信息</div>
+    <div class="custom-info-json">
+      <div class="custom-info-header">曲目信息</div>
       <div>ID</div>
       <a-text-input v-model="info_data.chart_id" />
       <div>名称</div>
@@ -37,10 +37,10 @@ defineProps<{
       <a-text-input v-model="info_data.jacket_artist" placeholder="请输入文本" />
       <a-button msg="Next" style="grid-column: span 2; width: 6rem" @click="emit('next')" />
     </div>
-    <div class="json-per-diff">
-      <div class="grid-2-header">难度信息</div>
+    <div class="custom-info-per-diff">
+      <div class="custom-info-header">难度信息</div>
       <template v-for="ix in filter_STR()">
-        <div class="grid-2-header">{{ STR[ix] }}</div>
+        <div class="custom-info-header">{{ STR[ix] }}</div>
         <div>定数</div>
         <a-number-input v-model="info_data[`difficulty_constant_${ix + 1}`]" min="0" step="0.001" />
         <div>定数显示</div>
@@ -75,30 +75,30 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
-.grid-2-header {
+<style>
+.custom-info-header {
   grid-column: 1 / span 2;
   padding-bottom: 15px;
   font-weight: bold;
 }
 
-.diff-left div:nth-child(2n + 1) {
+.custom-info-diff-left div:nth-child(2n + 1) {
   border: #b8dcee 2px solid;
   width: 15rem;
   height: 3rem;
   line-height: 3rem;
 }
 
-.diff-single :nth-child(1) {
+.custom-info-diff-single :nth-child(1) {
   grid-area: a;
 }
 
-.diff-single :nth-child(2) {
+.custom-info-diff-single :nth-child(2) {
   grid-area: b;
   font-size: 0.9rem;
 }
 
-.diff-single :nth-child(3) {
+.custom-info-diff-single :nth-child(3) {
   grid-area: c;
   font-size: 0.8rem;
   opacity: 0.8;
@@ -110,8 +110,8 @@ defineProps<{
   width: 100%;
 }
 
-.json-info,
-.json-per-diff {
+.custom-info-json,
+.custom-info-per-diff {
   display: grid;
   grid-template-columns: 1fr 2fr;
   justify-items: center;
@@ -119,7 +119,7 @@ defineProps<{
   gap: 5px;
 }
 
-:deep(input) {
+.custom-info input {
   color: #b8dcee;
   background: transparent;
 }

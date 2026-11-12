@@ -20,7 +20,7 @@ const r = Storage._ref
 const ds = defineComponent({
   name: 'ds',
   setup(_, { slots }) {
-    return () => h('div', { class: 'ds' }, slots.default?.())
+    return () => h('div', { class: 'settings-ds' }, slots.default?.())
   }
 })
 onUnmounted(() => {
@@ -32,7 +32,7 @@ onUnmounted(() => {
 <template>
   <SimpleModal size="2" title="设置">
     <div class="settings-wrapper">
-      <div class="contain">
+      <div class="settings-contain">
         <div style="width: 100%; text-align: center; grid-column: span 2">
           编辑数字可以使用键盘上下和滚轮哦。
         </div>
@@ -53,19 +53,19 @@ onUnmounted(() => {
 
         <setting-header msg="Lane部分" />
         <div>lane-width (px)</div>
-        <a-number-input v-model="r.settings.lane_width" class="in" min="1" />
+        <a-number-input v-model="r.settings.lane_width" class="settings-in" min="1" />
         <ds>每个lane的宽度。以像素为单位。</ds>
         <div>最小Lane</div>
-        <a-number-input v-model="r.settings.min_lane" class="in" min="1" />
+        <a-number-input v-model="r.settings.min_lane" class="settings-in" min="1" />
         <div>右侧分音</div>
         <a-checkbox2 v-model="r.settings.show_ticks" />
 
         <setting-header msg="界面与显示" />
 
         <div>最高流速</div>
-        <a-number-input v-model="r.settings.max_scale" class="in" min="1" />
+        <a-number-input v-model="r.settings.max_scale" class="settings-in" min="1" />
         <div>最高分度</div>
-        <a-number-input v-model="r.settings.max_meter" class="in" min="1" />
+        <a-number-input v-model="r.settings.max_meter" class="settings-in" min="1" />
         <div>Stats面板</div>
         <a-checkbox2 v-model="r.settings.song_stats" />
         <div>彩色Stats</div>
@@ -78,9 +78,9 @@ onUnmounted(() => {
         <div>滚轮反转</div>
         <a-checkbox2 v-model="r.settings.reverse_scroll" />
         <div>延迟（视觉）</div>
-        <a-number-input v-model="r.settings.offset1" class="in" />
+        <a-number-input v-model="r.settings.offset1" class="settings-in" />
         <div>密度采样间隔</div>
-        <a-number-input v-model="r.settings.density_data_count" class="in" min="10" />
+        <a-number-input v-model="r.settings.density_data_count" class="settings-in" min="10" />
         <ds>密度折线的采样数，也即折线的数据点数</ds>
         <div>小节号或拍号</div>
         <a-checkbox2 v-model="r.settings.bar_or_section" />
@@ -88,7 +88,7 @@ onUnmounted(() => {
           仿照malody，不使用小节来标注，而是每一个四分音符（按timing的bpm）标一个。<br />勾选这个=启用beat。
         </ds>
         <div>显示Beat时间</div>
-        <a-checkbox2 v-model="r.settings.beat_fn_time" class="in" />
+        <a-checkbox2 v-model="r.settings.beat_fn_time" class="settings-in" />
         <ds>在启用Beat的时候自动开启。</ds>
         <div>Beat从0开始</div>
         <a-checkbox2 v-model="r.settings.bar_from_0" />
@@ -144,10 +144,10 @@ onUnmounted(() => {
         </ds>
 
         <div>时间范围</div>
-        <a-number-input v-model="r.settings.pooling.ahead" class="in" />
+        <a-number-input v-model="r.settings.pooling.ahead" class="settings-in" />
         <div>最小pooling间隔</div>
         <a-number-input v-model="r.settings.pooling.interval" min="16" />
-        <ds v-if="r.settings.pooling.interval >= r.settings.pooling.ahead" class="warn">
+        <ds v-if="r.settings.pooling.interval >= r.settings.pooling.ahead" class="settings-warn">
           pooling间隔不应该大于时间范围设置。
         </ds>
 
@@ -156,13 +156,13 @@ onUnmounted(() => {
         <div>打击音</div>
         <a-checkbox2 v-model="r.settings.hit_sound" />
         <div>打击音延迟</div>
-        <a-number-input v-model="r.settings.offset3" class="in" />
+        <a-number-input v-model="r.settings.offset3" class="settings-in" />
         <div>打击音音量</div>
-        <a-number-input v-model="r.settings.hit_volume" class="in" max="100" min="0" step="1" />
+        <a-number-input v-model="r.settings.hit_volume" class="settings-in" max="100" min="0" step="1" />
         <div>音乐音量</div>
-        <a-number-input v-model="r.settings.music_volume" class="in" max="100" min="0" step="1" />
+        <a-number-input v-model="r.settings.music_volume" class="settings-in" max="100" min="0" step="1" />
         <div>Tap延迟</div>
-        <a-number-input v-model="r.settings.tap_delay" class="in" step="0.01" />
+        <a-number-input v-model="r.settings.tap_delay" class="settings-in" step="0.01" />
 
         <setting-header msg="预览模式" />
 
@@ -207,7 +207,7 @@ onUnmounted(() => {
         <ds>别看成透明度了。</ds>
         <div>小节线宽度</div>
         <a-number-input v-model="r.settings.sprites.bar_length" min="0" />
-        <ds v-if="r.settings.sprites.bar_length == 0" class="warn"> 真的吗？ </ds>
+        <ds v-if="r.settings.sprites.bar_length == 0" class="settings-warn"> 真的吗？ </ds>
         <div>小节线偏移</div>
         <a-number-input
           v-model="r.settings.sprites.bar_dy"
@@ -229,9 +229,9 @@ onUnmounted(() => {
         <div>Bomb</div>
         <a-number-input v-model="r.settings.judgement.p5" min="0" />
         <div>延迟（游玩）</div>
-        <a-number-input v-model="r.settings.offset2" class="in" />
+        <a-number-input v-model="r.settings.offset2" class="settings-in" />
         <div>延迟（视觉）</div>
-        <a-number-input v-model="r.settings.offset3" class="in" />
+        <a-number-input v-model="r.settings.offset3" class="settings-in" />
 
         <setting-header msg="导出设置" />
 
@@ -267,7 +267,7 @@ onUnmounted(() => {
   </SimpleModal>
 </template>
 
-<style scoped>
+<style>
 .settings-wrapper {
   width: 100%;
   display: flex;
@@ -276,7 +276,7 @@ onUnmounted(() => {
   max-height: 60vh;
 }
 
-.contain {
+.settings-contain {
   flex: 1;
   width: 100%;
   display: grid;
@@ -286,13 +286,13 @@ onUnmounted(() => {
   text-align: center;
   align-items: center;
 }
-.contain > div:not(.settings-header),
-span,
-s {
+.settings-contain > div:not(.settings-header),
+.settings-contain span,
+.settings-contain s {
   text-align: left;
   padding-left: 15px;
 }
-.ds {
+.settings-ds {
   grid-column: span 2;
   opacity: 0.8;
   padding-top: 0;
@@ -300,7 +300,7 @@ s {
   text-indent: 2rem;
 }
 
-select {
+.settings-contain select {
   width: 80%;
   border: none;
   outline: none;
@@ -310,40 +310,40 @@ select {
   font-size: 1rem;
 }
 
-option {
+.settings-contain option {
   color: black;
 }
 
-input {
+.settings-contain input {
   max-width: 60%;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
 }
-input[type='text'] {
+.settings-contain input[type='text'] {
   padding: 2px 0;
 }
-input[type='number'] {
+.settings-contain input[type='number'] {
   max-width: 30%;
   padding: 2px 0;
 }
 
-input:focus {
+.settings-contain input:focus {
   border-bottom: transparent 1px solid !important;
 }
-:deep(.a-color-input) {
+.settings-wrapper .a-color-input {
   justify-items: flex-start;
   width: min-content;
   gap: 0 20px;
 }
-input[type='checkbox'] {
+.settings-contain input[type='checkbox'] {
   width: min-content;
 }
 
-.in ::-webkit-inner-spin-button,
-.in ::-webkit-outer-spin-button {
+.settings-in ::-webkit-inner-spin-button,
+.settings-in ::-webkit-outer-spin-button {
   appearance: none;
 }
-.warn::before {
+.settings-warn::before {
   content: '⚠';
   color: gold;
 }

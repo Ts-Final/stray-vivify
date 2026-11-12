@@ -7,24 +7,25 @@ const model = defineModel<string>()
     <input
       v-model="model"
       type="color"
+      class="a-color-input"
     />
     <div>{{ model }}</div>
   </div>
 </template>
 
-<style scoped>
-.a-color-input {
+<style>
+div.a-color-input {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-input[type=color] {
+input.a-color-input {
   border: none;
   cursor: pointer;
   box-shadow: 0 0 2px white;
   text-align: right;
   justify-self: center;
 }
-div {
+.a-color-input div {
   user-select: none;
   text-align: left;
 }

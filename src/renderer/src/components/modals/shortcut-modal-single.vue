@@ -50,11 +50,11 @@ function listen_keyboard() {
   </tr>
 </template>
 
-<style scoped>
-input[type='text'] {
+<style>
+.shortcut-single-line input[type='text'] {
   width: 7ch;
 }
-td {
+.shortcut-single-line td {
   user-select: none;
 }
 .sc-msg {

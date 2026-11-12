@@ -439,7 +439,7 @@ import AHref from '@renderer/components/a-elements/a-href.vue'
   </div>
 </template>
 
-<style scoped>
+<style>
 .version-wrapper {
   display: flex;
   flex-direction: column-reverse;

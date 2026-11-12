@@ -312,7 +312,7 @@ function title_ize(s: string) {
   </div>
 </template>
 
-<style scoped>
+<style>
 .playfield {
   position: absolute;
   top: 0;
@@ -333,7 +333,7 @@ function title_ize(s: string) {
   transform: translateX(-50%);
   filter: blur(3px);
 }
-img {
+.playfield img {
   pointer-events: none;
 }
 .pf-animations,

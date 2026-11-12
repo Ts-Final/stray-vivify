@@ -49,7 +49,7 @@ import ShortcutModalHeader from '@renderer/components/modals/shortcut-modal-head
   </SimpleModal>
 </template>
 
-<style scoped>
+<style>
 .sc-table {
   width: 100%;
   text-align: center;

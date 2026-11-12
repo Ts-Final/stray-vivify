@@ -58,8 +58,8 @@ function click() {
 </script>
 
 <template>
-  <div class="density-wrapper" style="user-select: none">
-    <div class="density-title" @click="update_path()">
+  <div class="fn-density-wrapper" style="user-select: none">
+    <div class="fn-density-title" @click="update_path()">
       <word-helper dec="点击以刷新" msg="线密度" />
     </div>
     <svg
@@ -124,14 +124,14 @@ function click() {
   </div>
 </template>
 
-<style scoped>
-.density-title {
+<style>
+.fn-density-title {
   text-align: center;
   cursor: pointer;
   max-height: calc(3rem + 250px);
   overflow: hidden;
 }
-.density-wrapper {
+.fn-density-wrapper {
   columns: 1;
   text-align: center;
   min-width: 320px;

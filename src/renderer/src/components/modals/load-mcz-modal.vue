@@ -38,7 +38,7 @@ onUnmounted(() => {
 
 <template>
   <simple-modal size="3" title="importing mcz">
-    <div class="wrapper">
+    <div class="mcz-wrapper">
       <Hide :def="true" title="谱面">
         <div v-if="diff && diff.length" class="mcz-diffs">
           <div v-for="(d, ix) in diff" :key="ix" class="mcz-diff-line">
@@ -75,8 +75,8 @@ onUnmounted(() => {
   </simple-modal>
 </template>
 
-<style scoped>
-.wrapper {
+<style>
+.mcz-wrapper {
   width: 100%;
   max-height: 50vh;
   overflow: hidden scroll;

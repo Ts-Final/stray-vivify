@@ -124,7 +124,7 @@ const starTipLevel = computed(() => Rework_Display.parseRcDifficultyLevel(diffTe
 
 const category = computed(() => pattern.value?.category ?? '-')
 const modeTag = computed(() => pattern.value?.modeTag ?? 'Mix')
-const modeTagClass = computed(() => `mode-${modeTag.value.toLowerCase()}`)
+const modeTagClass = computed(() => `mma-mode-${modeTag.value.toLowerCase()}`)
 /** 有几个画几个（不补空条、最多 5 条，由 Rework.presentPattern 保证） */
 const bars = computed<Rework_Types.PatternBarItem[]>(() => pattern.value?.bars ?? [])
 
@@ -142,16 +142,16 @@ const statusText = computed(() => {
 })
 
 const statusKind = computed(() => {
-  if (busy.value) return 'loading'
-  if (fatals.value.length) return 'error'
-  return estimate.value ? 'ok' : ''
+  if (busy.value) return 'mma-loading'
+  if (fatals.value.length) return 'mma-error'
+  return estimate.value ? 'mma-ok' : ''
 })
 </script>
 
 <template>
   <div class="mma-card">
-    <div class="status-row" title="点击重新计算" @click="run">
-      <p class="status" :class="statusKind">{{ statusText }}</p>
+    <div class="mma-status-row" title="点击重新计算" @click="run">
+      <p class="mma-status" :class="statusKind">{{ statusText }}</p>
     </div>
 
     <!-- ── star-block ─────────────────────────────────────────────── -->
@@ -195,8 +195,8 @@ const statusKind = computed(() => {
     </template>
 
     <!-- ── mode tag（右侧附被忽略的 stacknote 计数） ─────────────── -->
-    <div class="mode-tag-group">
-      <span :class="modeTagClass" class="mode-tag">{{ modeTag }}</span>
+    <div class="mma-mode-tag-group">
+      <span :class="modeTagClass" class="mma-mode-tag">{{ modeTag }}</span>
       <word-helper
         v-if="droppedNotes > 0"
         :dec="`${droppedNotes} 个音符与同列 LN 冲突（落在 LN 体内或与 LN 尾同刻），键型分析已忽略它们`"
@@ -212,7 +212,7 @@ const statusKind = computed(() => {
   </div>
 </template>
 
-<style scoped>
+<style>
 /* 移植自 MMA styles/status.css + star.css + bars.css 的相关规则（去掉暂停/进度图部分） */
 .mma-card {
   display: flex;
@@ -229,14 +229,14 @@ const statusKind = computed(() => {
 }
 
 /* ── status ──────────────────────────────────────────────────────── */
-.status-row {
+.mma-status-row {
   display: flex;
   align-items: center;
   gap: 8px;
   min-height: 18px;
   cursor: pointer;
 }
-.status {
+.mma-status {
   margin: 0;
   flex: 1;
   overflow: hidden;
@@ -246,13 +246,13 @@ const statusKind = computed(() => {
   letter-spacing: 0.02em;
   color: #b8dcee;
 }
-.status.loading {
+.mma-status.mma-loading {
   color: #ffd966;
 }
-.status.ok {
+.mma-status.mma-ok {
   color: #8bff66;
 }
-.status.error {
+.mma-status.mma-error {
   color: #ff7a69;
 }
 
@@ -439,13 +439,13 @@ const statusKind = computed(() => {
 }
 
 /* ── mode tags ───────────────────────────────────────────────────── */
-.mode-tag-group {
+.mma-mode-tag-group {
   display: flex;
   align-items: center;
   gap: 6px;
   margin-top: 2px;
 }
-.mode-tag {
+.mma-mode-tag {
   padding: 2px 9px;
   border-radius: 999px;
   font-size: 10px;
@@ -461,16 +461,16 @@ const statusKind = computed(() => {
   font-variant-numeric: tabular-nums;
   cursor: help;
 }
-.mode-rc {
+.mma-mode-rc {
   background: #7afbff;
 }
-.mode-ln {
+.mma-mode-ln {
   background: #f64eff;
 }
-.mode-hb {
+.mma-mode-hb {
   background: #fff04e;
 }
-.mode-mix {
+.mma-mode-mix {
   background: #8bff66;
 }
 

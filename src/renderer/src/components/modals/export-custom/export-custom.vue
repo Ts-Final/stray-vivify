@@ -102,13 +102,13 @@ function start_phase_2() {
 
 <template>
   <SimpleModal size="3" title="gugu gaga">
-    <div class="custom-wrapper">
+    <div class="export-custom-wrapper">
       <a-tab v-model="phase">
         <div disabled="true">选择diff</div>
         <div disabled="true">填数据</div>
         <div disabled="true">最后修改</div>
       </a-tab>
-      <div class="custom-inner">
+      <div class="export-custom-inner">
         <custom-diff v-if="phase == 0" v-model="diff_indexs" @next="start_phase_1" />
         <custom-info
           v-if="phase == 1"
@@ -124,8 +124,8 @@ function start_phase_2() {
   </SimpleModal>
 </template>
 
-<style scoped>
-.custom-wrapper {
+<style>
+.export-custom-wrapper {
   width: 100%;
   height: 100%;
   display: flex;
@@ -134,18 +134,18 @@ function start_phase_2() {
   max-height: 70vh;
 }
 
-.custom-inner {
+.export-custom-inner {
   width: 100%;
   height: 60vh;
 }
 
-.custom-diff {
+.export-custom-diff {
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 2fr;
 }
 
-.diff-left {
+.export-custom-diff-left {
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: center;
@@ -156,14 +156,14 @@ function start_phase_2() {
   padding-left: 25px;
 }
 
-.diff-left div:nth-child(2n + 1) {
+.export-custom-diff-left div:nth-child(2n + 1) {
   border: #b8dcee 2px solid;
   width: 15rem;
   height: 3rem;
   line-height: 3rem;
 }
 
-.diff-single {
+.export-custom-diff-single {
   width: 100%;
   height: min-content;
   display: grid;
@@ -172,22 +172,22 @@ function start_phase_2() {
   padding: 5px;
 }
 
-.diff-single :nth-child(1) {
+.export-custom-diff-single :nth-child(1) {
   grid-area: a;
 }
 
-.diff-single :nth-child(2) {
+.export-custom-diff-single :nth-child(2) {
   grid-area: b;
   font-size: 0.9rem;
 }
 
-.diff-single :nth-child(3) {
+.export-custom-diff-single :nth-child(3) {
   grid-area: c;
   font-size: 0.8rem;
   opacity: 0.8;
 }
 
-:deep(input) {
+.export-custom-wrapper input {
   color: #b8dcee;
   background: transparent;
 }

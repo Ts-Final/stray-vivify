@@ -12,7 +12,7 @@ const shown = computed(() => Storage.data.value.settings.mouse_tracker)
   <div v-if="shown" :style="sty" class="mouse-tracker"></div>
 </template>
 
-<style scoped>
+<style>
 .mouse-tracker {
   z-index: var(--z-mouse-tracker);
   position: absolute;

@@ -247,37 +247,38 @@ onBeforeUnmount(() => {
   <div class="fn-tesseract">
     <div class="fn-tesseract-title">转转转</div>
 
-    <div class="stage">
+    <div class="fn-tesseract-inner">
       <!-- 二维：纯 CSS -->
-      <div class="demo demo-2d">
-        <div class="plane-2d"></div>
+      <div class="fn-tst-2d">
+        <div class="fn-tst-2d-img"/>
       </div>
 
       <!-- 三维：纯 CSS -->
-      <div class="demo demo-3d">
-        <div class="cube-3d">
-          <div class="face-3d face-front"></div>
-          <div class="face-3d face-back"></div>
-          <div class="face-3d face-right"></div>
-          <div class="face-3d face-left"></div>
-          <div class="face-3d face-top"></div>
-          <div class="face-3d face-bottom"></div>
+      <div class="fn-tst-3d">
+        <div class="fn-tst-cube">
+          <div class="fn-tst-face fn-tst-face-front" />
+          <div class="fn-tst-face fn-tst-face-back" />
+          <div class="fn-tst-face fn-tst-face-right" />
+          <div class="fn-tst-face fn-tst-face-left" />
+          <div class="fn-tst-face fn-tst-face-top" />
+          <div class="fn-tst-face fn-tst-face-bottom" />
         </div>
       </div>
       <!-- 四维：PixiJS 容器 -->
-      <div ref="hostRef" class="pixi-host"></div>
+      <div ref="hostRef" class="fn-tst-4d" />
     </div>
   </div>
 </template>
 
-<style scoped>
+<style>
 .fn-tesseract {
   width: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.stage {
+
+.fn-tesseract-inner {
   position: relative;
   width: 85%;
   height: var(--tesseract);
@@ -288,13 +289,12 @@ onBeforeUnmount(() => {
   justify-content: space-evenly;
 }
 
-.pixi-host {
+.fn-tst-4d {
   width: var(--tesseract);
   height: var(--tesseract);
 }
 
-/* 二维演示 */
-.demo {
+.fn-tesseract-inner > div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -302,7 +302,7 @@ onBeforeUnmount(() => {
   height: var(--tesseract);
   width: var(--tesseract);
 }
-.plane-2d {
+.fn-tst-2d-img {
   width: calc(var(--tesseract) / 1.7);
   height: calc(var(--tesseract) / 1.7);
   background-size: contain;
@@ -321,7 +321,7 @@ onBeforeUnmount(() => {
 }
 
 /* 三维 */
-.demo-3d {
+.fn-tst-3d {
   position: relative;
   height: var(--tesseract);
   width: var(--tesseract);
@@ -334,7 +334,7 @@ onBeforeUnmount(() => {
 
 /* 立方体边长取 tesseract 的 0.55 倍，
    旋转时对角最大约 sqrt(3)*0.55 ≈ 0.95，不会超出容器 */
-.cube-3d {
+.fn-tst-cube {
   --s: calc(var(--tesseract) * 0.55);
   position: relative;
   width: var(--s);
@@ -352,7 +352,7 @@ onBeforeUnmount(() => {
   }
 }
 
-.face-3d {
+.fn-tst-face {
   position: absolute;
   inset: 0;
   background-size: contain;
@@ -364,22 +364,22 @@ onBeforeUnmount(() => {
 }
 
 /* 六个面：半边长 = --s / 2 */
-.face-front {
+.fn-tst-face-front {
   transform: translateZ(calc(var(--s) / 2));
 }
-.face-back {
+.fn-tst-face-back {
   transform: rotateY(180deg) translateZ(calc(var(--s) / 2));
 }
-.face-right {
+.fn-tst-face-right {
   transform: rotateY(90deg) translateZ(calc(var(--s) / 2));
 }
-.face-left {
+.fn-tst-face-left {
   transform: rotateY(-90deg) translateZ(calc(var(--s) / 2));
 }
-.face-top {
+.fn-tst-face-top {
   transform: rotateX(90deg) translateZ(calc(var(--s) / 2));
 }
-.face-bottom {
+.fn-tst-face-bottom {
   transform: rotateX(-90deg) translateZ(calc(var(--s) / 2));
 }
 </style>

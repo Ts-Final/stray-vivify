@@ -64,8 +64,8 @@ const log = computed(() => {
   <SimpleModal size="3" title="Bpm Tapper">
     <div class="bpm-cr">
       <div class="bpm-control">
-        <a-button v-if="!flag" class="rainbow-text" msg="开始！" @click="start_tap()" />
-        <a-button v-if="flag" msg="结束！" @click="stop_tap()" />
+        <a-button v-if="!flag" class="rainbow-text tap-bpm-button" msg="开始！" @click="start_tap()" />
+        <a-button v-if="flag" class="tap-bpm-button" msg="结束！" @click="stop_tap()" />
         <div>开始后敲击任意键即可。</div>
       </div>
       <div class="bpm-result">
@@ -89,8 +89,8 @@ const log = computed(() => {
   </SimpleModal>
 </template>
 
-<style scoped>
-.a-button {
+<style>
+.tap-bpm-button {
   font-size: 1.5rem;
 }
 .bpm-cr {

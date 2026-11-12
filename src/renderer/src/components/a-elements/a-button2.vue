@@ -6,7 +6,7 @@ const {msg} = defineProps<{msg: string}>()
   <div class="a-button2" v-html="msg" />
 </template>
 
-<style scoped>
+<style>
 .a-button2 {
   border-radius: 3px;
   background:var(--purple-bgi);

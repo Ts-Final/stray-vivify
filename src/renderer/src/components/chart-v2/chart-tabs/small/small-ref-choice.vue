@@ -16,14 +16,14 @@ const rkey = RefreshAll.generate_key('diff-choice')
 </script>
 
 <template>
-  <div class="left-diff-choice">
+  <div class="ref-choice">
     <div>参考难度：</div>
     <a-select :key="rkey" v-model="dix" :options="options()" />
   </div>
 </template>
 
-<style scoped>
-.left-diff-choice {
+<style>
+.ref-choice {
   display: flex;
   flex-direction: row;
   gap: 10px 0;
@@ -31,7 +31,7 @@ const rkey = RefreshAll.generate_key('diff-choice')
   width: 100%;
   white-space: nowrap;
 }
-:deep(.a-select-value) {
+.ref-choice .a-select-value {
   overflow-x: hidden;
 }
 </style>

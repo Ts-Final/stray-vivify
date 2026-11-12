@@ -26,20 +26,20 @@ const val = computed(() => {
 const on_click = (val: T) => {
   model.value = val
 }
-const option_class = computed(() => props.maxh ? "ovf": '')
+const option_class = computed(() => (props.maxh ? 'a-select-ovf' : ''))
 const maxh = props.maxh
 </script>
 
 <template>
   <div class="a-select">
     <div class="a-select-value" v-html="val" />
-    <div class="a-option-wrapper" :class="option_class">
-      <div v-for="o in option" class="a-option" @click="() => on_click(o.val)" v-html="o.display" />
+    <div class="a-select-option-wrapper" :class="option_class">
+      <div v-for="o in option" class="a-select-option" @click="() => on_click(o.val)" v-html="o.display" />
     </div>
   </div>
 </template>
 
-<style scoped>
+<style>
 .a-select {
   display: inline-block;
   min-width: 120px;
@@ -67,7 +67,7 @@ const maxh = props.maxh
   text-align: center;
 }
 
-.a-option-wrapper {
+.a-select-option-wrapper {
   background: var(--darker-bgi);
   display: flex;
   flex-direction: column;
@@ -82,13 +82,13 @@ const maxh = props.maxh
   pointer-events: none;
 }
 
-.a-select:hover .a-option-wrapper {
+.a-select:hover .a-select-option-wrapper {
   opacity: 1;
   pointer-events: all;
   z-index: var(--z-highest);
 }
 
-.a-option {
+.a-select-option {
   background-color: transparent;
   line-height: 1.5em;
   text-align: left;
@@ -98,11 +98,11 @@ const maxh = props.maxh
   width: calc(100% - 2rem);
   white-space: nowrap;
 }
-.a-option:hover {
+.a-select-option:hover {
   filter: brightness(1.1);
   background-color: #3b4652;
 }
-.ovf {
+.a-select-ovf {
   overflow: auto;
   max-height: v-bind(maxh);
 }

@@ -6,7 +6,7 @@ defineProps<{msg: string}>()
   <div class="settings-header" v-html="msg"/>
 </template>
 
-<style scoped>
+<style>
 .settings-header {
   font-size: 1.5rem;
   font-weight: bold;

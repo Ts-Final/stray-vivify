@@ -16,7 +16,7 @@ const fn = inject<(idx: number) => void>('focus') ?? ((_) => {})
   </div>
 </template>
 
-<style scoped>
+<style>
 .timing-single {
   max-width: 45vw;
   min-width: 30vw;

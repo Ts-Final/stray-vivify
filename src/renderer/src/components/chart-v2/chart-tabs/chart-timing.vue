@@ -109,7 +109,7 @@ onUnmounted(() => chart.diff.update_timing_list())
         <div class="timing-list-inner">
           <timing-single
             v-for="(t, idx) in diff.timing"
-            :class="index == idx ? 'chosen' : ''"
+            :class="index == idx ? 'chart-timing-chosen' : ''"
             :idx="idx"
             :timing="t"
             @click="index = idx"
@@ -171,7 +171,7 @@ onUnmounted(() => chart.diff.update_timing_list())
   </div>
 </template>
 
-<style scoped>
+<style>
 .timing-wrapper {
   width: 100%;
   height: 100%;
@@ -212,7 +212,7 @@ onUnmounted(() => chart.diff.update_timing_list())
   max-height: calc(100% - 60px - 2rem);
   height: 100%;
 }
-.chosen {
+.chart-timing-chosen {
   background: var(--button-hover);
 }
 .timing-right {

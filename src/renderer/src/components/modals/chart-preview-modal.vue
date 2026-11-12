@@ -51,7 +51,7 @@ const shown_ticks = toRef(Storage.data.value.settings.svg_shown_parts)
   </SimpleModal>
 </template>
 
-<style scoped>
+<style>
 .chart-preview-wrapper {
   height: 60vh;
   width: 100%;

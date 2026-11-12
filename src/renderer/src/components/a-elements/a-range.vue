@@ -7,11 +7,11 @@ const model = defineModel<number>()
 </script>
 
 <template>
-  <input v-model.number="model" :max="max" :min="min" :step="step" type="range" />
+  <input class="a-range" v-model.number="model" :max="max" :min="min" :step="step" type="range" />
 </template>
 
-<style scoped>
-input {
+<style>
+input.a-range {
   width: 80%;
   appearance: none;
   background-color: transparent;
@@ -20,7 +20,7 @@ input {
   contain: inline-size paint style;
 }
 
-input::-webkit-slider-container {
+input.a-range::-webkit-slider-container {
   width: 100%;
   border: 1px solid var(--grey);
   border-radius: 0;
@@ -28,14 +28,14 @@ input::-webkit-slider-container {
   padding: 0 5px;
 }
 
-input::-webkit-slider-runnable-track {
+input.a-range::-webkit-slider-runnable-track {
   border: none;
   border-radius: 0;
   background-color: transparent;
   height: 100%;
 }
 
-input::-webkit-slider-thumb {
+input.a-range::-webkit-slider-thumb {
   border-radius: 0;
   appearance: none;
   width: 4px;

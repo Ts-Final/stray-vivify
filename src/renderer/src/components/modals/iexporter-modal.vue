@@ -52,9 +52,9 @@ function open_svg() {
 
 <template>
   <simple-modal size="1" title="好多东西啊……">
-    <div class="vsc-loader-wrapper">
+    <div class="iexporter-wrapper">
       <Hide :def="true" title="导入/导出">
-        <div class="iexports">
+        <div class="iexporter-buttons">
           <a-button2 msg="导入vsb" @click="read_vsb" />
           <a-button2 msg="导入vsc" @click="read_vsc" />
           <a-button2 msg="导入osz" @click="import_osz" />
@@ -62,7 +62,7 @@ function open_svg() {
         </div>
       </Hide>
       <Hide :def="true" title="导出">
-        <div class="iexports">
+        <div class="iexporter-buttons">
           <a-button2 msg="导出vsc" @click="write_vsc" />
           <a-button2 msg="导出svc" @click="export_svc" />
           <a-button2 msg="导出zip" @click="export_zip" />
@@ -76,8 +76,8 @@ function open_svg() {
   </simple-modal>
 </template>
 
-<style scoped>
-.vsc-loader-wrapper {
+<style>
+.iexporter-wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -86,7 +86,7 @@ function open_svg() {
   width: 100%;
   overflow-y: auto;
 }
-.iexports {
+.iexporter-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 100%;

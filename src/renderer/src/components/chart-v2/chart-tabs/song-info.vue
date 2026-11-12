@@ -46,8 +46,8 @@ const pkey = RefreshAll.generate_key('song-cover')
 </script>
 
 <template>
-  <div class="info-wrapper">
-    <div class="info-inner">
+  <div class="song-info-wrapper">
+    <div class="song-info-inner">
       <song-info-single v-model="refs.name" name="曲名" />
       <song-info-single v-model="refs.name_roman" name="曲名-罗马音" />
       <song-info-single v-model="refs.composer" name="编曲" />
@@ -62,7 +62,7 @@ const pkey = RefreshAll.generate_key('song-cover')
           v-if="!img_show"
           :src="src"
           alt="how are you reading this?"
-          class="song-sprite"
+          class="song-info-sprite"
           @error="img_show = true"
         />
       </div>
@@ -72,13 +72,13 @@ const pkey = RefreshAll.generate_key('song-cover')
           v-if="!img2_show"
           :src="src2"
           alt="how are you reading this?"
-          class="song-sprite"
+          class="song-info-sprite"
           @error="img2_show = true"
         />
       </div>-->
     </div>
-    <div class="info-inner">
-      <div class="song-info-single diff-choose">
+    <div class="song-info-inner">
+      <div class="song-info-single song-info-diff-choose">
         <div :key="dkey">
           <div>选择难度：</div>
           <a-select v-model="dix" :options="options()" />
@@ -97,8 +97,8 @@ const pkey = RefreshAll.generate_key('song-cover')
   </div>
 </template>
 
-<style scoped>
-.info-wrapper {
+<style>
+.song-info-wrapper {
   width: 100%;
   height: 100%;
   display: grid;
@@ -107,7 +107,7 @@ const pkey = RefreshAll.generate_key('song-cover')
   box-sizing: border-box;
   border: 50px solid transparent;
 }
-.song-sprite {
+.song-info-sprite {
   left: 50%;
   position: relative;
   transform: translateX(-50%);
@@ -115,7 +115,7 @@ const pkey = RefreshAll.generate_key('song-cover')
   background: white;
   padding: 5px;
 }
-.info-inner {
+.song-info-inner {
   display: flex;
   flex-direction: column;
   padding: 15px;
@@ -136,13 +136,13 @@ const pkey = RefreshAll.generate_key('song-cover')
   display: flex;
   justify-content: space-between;
 }
-.diff-choose {
+.song-info-diff-choose {
   display: flex;
   flex-direction: column;
   gap: 10px 0;
   align-items: center;
 }
-.diff-choose > div {
+.song-info-diff-choose > div {
   flex-direction: row;
   display: flex;
   gap: 25px;

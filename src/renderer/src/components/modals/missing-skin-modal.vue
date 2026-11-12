@@ -23,7 +23,7 @@ if (no1) {
 
 <template>
   <SimpleModal size="1" title="where R U?">
-    <div class="wrapper">
+    <div class="missing-skin-wrapper">
       <div>下列skin贴图未能加载，请检查skin中是否有这个贴图。</div>
       <p></p>
       <div class="skin-names">
@@ -43,8 +43,8 @@ if (no1) {
   </SimpleModal>
 </template>
 
-<style scoped>
-.wrapper {
+<style>
+.missing-skin-wrapper {
   width: 90%;
   text-align: center;
 }

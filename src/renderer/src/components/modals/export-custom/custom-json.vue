@@ -48,24 +48,24 @@ function do_export() {
 </script>
 
 <template>
-    <div class="custom-info">
-        <div class="info-functions">
+    <div class="custom-json">
+        <div class="custom-json-functions">
             <WordHelper dec="指定导出文件夹的命名，若不给定则使用内置默认命名" msg="文件夹名" />
             <a-text-input v-model="args.as_id" />
             <WordHelper dec="是否裁剪图片，勾选则会剪切中间的正方形，不勾选则拉伸" msg="裁剪" />
             <a-checkbox v-model="args.crop" />
             <WordHelper dec="是否在导出中包含stray/vivify的数据文件（不*应该*影响customsong的读取）" msg="SV" />
             <a-checkbox v-model="args.sv" />
-            <a-button class="export-btn" msg="Export" @click="do_export" />
+            <a-button class="custom-json-export-btn" msg="Export" @click="do_export" />
         </div>
-        <div class="info-editor">
+        <div class="custom-json-editor">
             <JsonEditor v-model="info_data" :editable="true" />
         </div>
     </div>
 </template>
 
-<style scoped>
-.diff-left div:nth-child(2n + 1) {
+<style>
+.custom-json-diff-left div:nth-child(2n + 1) {
     border: #b8dcee 2px solid;
     width: 15rem;
     height: 3rem;
@@ -87,7 +87,7 @@ function do_export() {
     opacity: 0.8;
 }
 
-.custom-info {
+.custom-json {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -95,7 +95,7 @@ function do_export() {
     height: 100%;
 }
 
-.info-functions {
+.custom-json-functions {
     display: grid;
     grid-template-columns: 5rem 1fr;
     justify-items: center;
@@ -104,7 +104,7 @@ function do_export() {
     height: min-content;
 }
 
-.info-editor {
+.custom-json-editor {
     flex-grow: 1;
     font-size: 1rem;
     height: 100%;
@@ -113,7 +113,7 @@ function do_export() {
     border-left: 2px #b8dcee dotted;
 }
 
-.export-btn {
+.custom-json-export-btn {
     grid-column: span 2;
     text-align: center;
     margin-top: 15px;

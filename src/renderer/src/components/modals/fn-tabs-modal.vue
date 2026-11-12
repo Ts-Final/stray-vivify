@@ -126,8 +126,8 @@ function drop_pool() {
 function insert_class(side: Side, i: number): string {
   const d = drop.value
   if (dragging.value == null || d == null || d.side !== side) return ''
-  if (d.index === i) return 'insert-before'
-  if (d.index === i + 1) return 'insert-after'
+  if (d.index === i) return 'fn-tabs-insert-before'
+  if (d.index === i + 1) return 'fn-tabs-insert-after'
   return ''
 }
 
@@ -145,14 +145,14 @@ onMounted(() => {
 <template>
   <SimpleModal size="2" title="Fn排列">
     <div class="fn-tabs">
-      <div class="pool" @dragover.prevent="over_pool" @drop.prevent="drop_pool">
-        <div class="pool-title">右键删除。命名别问，问就是代码名称。</div>
-        <div class="pool-list">
+      <div class="fn-tabs-pool" @dragover.prevent="over_pool" @drop.prevent="drop_pool">
+        <div class="fn-tabs-pool-title">右键删除。命名别问，问就是代码名称。</div>
+        <div class="fn-tabs-pool-list">
           <div
             v-for="fn in FN_TABS"
             :key="fn.id"
-            :class="{ dim: placed.has(fn.id) }"
-            class="fn-chip"
+            :class="{ 'fn-tabs-dim': placed.has(fn.id) }"
+            class="fn-tabs-chip"
             draggable="true"
             @dragend="end_drag"
             @dragstart="start_drag(fn.id, $event)"
@@ -165,16 +165,16 @@ onMounted(() => {
       <div
         v-for="side in sides"
         :key="side"
-        class="col"
+        class="fn-tabs-col"
         @dragover.prevent="over_col(side)"
         @drop.prevent="drop_at(side, col(side).length)"
       >
-        <div class="col-title">{{ side == 'left' ? '左列' : '右列' }}</div>
+        <div class="fn-tabs-col-title">{{ side == 'left' ? '左列' : '右列' }}</div>
         <div
           v-for="(id, i) in col(side)"
           :key="id"
           :class="insert_class(side, i)"
-          class="fn-chip placed"
+          class="fn-tabs-chip fn-tabs-placed"
           draggable="true"
           @contextmenu.prevent="remove(side, i)"
           @dragend="end_drag"
@@ -184,7 +184,7 @@ onMounted(() => {
         >
           {{ fn_name(id) }}
         </div>
-        <div v-if="col(side).length == 0" :class="insert_class(side, 0)" class="empty">
+        <div v-if="col(side).length == 0" :class="insert_class(side, 0)" class="fn-tabs-empty">
           把 fn 拖到这里
         </div>
       </div>
@@ -196,7 +196,7 @@ onMounted(() => {
   </SimpleModal>
 </template>
 
-<style scoped>
+<style>
 .fn-tabs {
   width: 100%;
   display: grid;
@@ -204,28 +204,28 @@ onMounted(() => {
   gap: 10px;
 }
 
-.pool {
+.fn-tabs-pool {
   grid-column: span 2;
   border: 1px dashed rgba(184, 220, 238, 0.4);
   border-radius: 5px;
   padding: 8px;
 }
 
-.pool-title {
+.fn-tabs-pool-title {
   font-size: 0.85rem;
   opacity: 0.8;
   text-align: center;
   margin-bottom: 8px;
 }
 
-.pool-list {
+.fn-tabs-pool-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 6px;
 }
 
-.col {
+.fn-tabs-col {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -237,14 +237,14 @@ onMounted(() => {
   padding: 8px;
 }
 
-.col-title {
+.fn-tabs-col-title {
   text-align: center;
   font-size: 0.9rem;
   opacity: 0.8;
   flex-shrink: 0;
 }
 
-.fn-chip {
+.fn-tabs-chip {
   cursor: grab;
   text-align: center;
   padding: 3px 6px;
@@ -255,17 +255,17 @@ onMounted(() => {
   transition: opacity 0.1s linear;
 }
 
-.fn-chip.placed {
+.fn-tabs-chip.fn-tabs-placed {
   width: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
 }
 
-.fn-chip.dim {
+.fn-tabs-chip.fn-tabs-dim {
   opacity: 0.35;
 }
 
-.empty {
+.fn-tabs-empty {
   text-align: center;
   font-size: 0.85rem;
   font-style: italic;
@@ -273,13 +273,13 @@ onMounted(() => {
 }
 
 /* 插入线：绝对定位，不占布局 */
-.insert-before,
-.insert-after {
+.fn-tabs-insert-before,
+.fn-tabs-insert-after {
   position: relative;
 }
 
-.insert-before::before,
-.insert-after::after {
+.fn-tabs-insert-before::before,
+.fn-tabs-insert-after::after {
   content: '';
   position: absolute;
   left: 0;
@@ -289,11 +289,11 @@ onMounted(() => {
   background: #b8dcee;
 }
 
-.insert-before::before {
+.fn-tabs-insert-before::before {
   top: -4px;
 }
 
-.insert-after::after {
+.fn-tabs-insert-after::after {
   bottom: -4px;
 }
 </style>

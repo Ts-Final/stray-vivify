@@ -16,15 +16,15 @@ const rkey = RefreshAll.generate_key('select')
 </script>
 
 <template>
-  <div v-show="selectedNID().length > 0" :key="rkey" class="edit-frame">
+  <div v-show="selectedNID().length > 0" :key="rkey" class="fn-edit-tools-frame">
     <p style="text-align: center">想做些什么呢？</p>
-    <div class="edit-button-frame">
+    <div class="fn-edit-tools-button-frame">
       <div>
-        <div class="edit-button" @click="EditorTools.mirror(selectedNID())">对称</div>
+        <div class="fn-edit-tools-button" @click="EditorTools.mirror(selectedNID())">对称</div>
       </div>
       <div>
         <div
-          class="edit-button"
+          class="fn-edit-tools-button"
           @click="
             EditorTools.mutiplier(selectedNID(), toolMultiArgs.multiVal, toolMultiArgs.baseZero)
           "
@@ -44,31 +44,31 @@ const rkey = RefreshAll.generate_key('select')
   </div>
 </template>
 
-<style lang="css" scoped>
-.edit-frame {
+<style>
+.fn-edit-tools-frame {
   padding-top: 0;
 }
 
-.edit-button-frame {
+.fn-edit-tools-button-frame {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.edit-button-frame > div {
+.fn-edit-tools-button-frame > div {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.edit-button {
+.fn-edit-tools-button {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
 }
 
-.edit-button:hover {
+.fn-edit-tools-button:hover {
   transition: background-color 0.2s;
   background-color: rgba(200, 200, 200, 0.2);
 }

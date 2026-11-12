@@ -40,7 +40,7 @@ const title = computed(() => H2P_ARTICLES.find((x) => x.id === id.value)?.title 
         <div
           v-for="a in H2P_ARTICLES"
           :key="a.id"
-          :class="id === a.id ? 'h2p-nav-item chosen' : 'h2p-nav-item'"
+          :class="id === a.id ? 'h2p-nav-item h2p-chosen' : 'h2p-nav-item'"
           @click="show(a.id)"
         >
           <span class="h2p-nav-id">{{ a.id }}</span>
@@ -170,7 +170,7 @@ const title = computed(() => H2P_ARTICLES.find((x) => x.id === id.value)?.title 
           <p>接下来是tips。当然是随机抽的啦，现在总共有{{ StartUpTips.length }}条可用。</p>
           <p class="h2p-note">可以点击上方图标刷新tips，in case刷到了一些很长很长的tips</p>
           <p>接下来是欢迎 {{ Storage.username }}！</p>
-          <p>广告位招租。（有没有人需要一些友情链接，<span class="blackout">@vivid/otto</span>?</p>
+          <p>广告位招租。（有没有人需要一些友情链接，<span class="h2p-blackout">@vivid/otto</span>?</p>
           <p>谱面信息：曲名，bpm，id，diff的列表。</p>
           <h3>右侧</h3>
           <p>搜索框，导入曲目。这两个不用多说了吧？</p>
@@ -244,10 +244,10 @@ const title = computed(() => H2P_ARTICLES.find((x) => x.id === id.value)?.title 
   </SimpleModal>
 </template>
 
-<style scoped>
-h1,
-h2,
-h3 {
+<style>
+.h2p h1,
+.h2p h2,
+.h2p h3 {
   margin: 0;
   border-bottom: 1px solid gray;
 }
@@ -288,7 +288,7 @@ h3 {
   background: rgba(184, 220, 238, 0.15);
 }
 
-.h2p-nav-item.chosen {
+.h2p-nav-item.h2p-chosen {
   background: rgba(184, 220, 238, 0.22);
   box-shadow: inset 3px 0 0 #b8dcee;
 }
@@ -376,7 +376,7 @@ h3 {
   opacity: 0.95;
 }
 
-.copy-able {
+.h2p-copy-able {
   cursor: text;
   user-select: text;
 }
@@ -411,13 +411,13 @@ h3 {
   font-style: italic;
 }
 
-.blackout {
+.h2p-blackout {
   color: black;
   background: black;
   transition: color 0.2s linear;
 }
 
-.blackout:hover {
+.h2p-blackout:hover {
   color: #b8dcee;
 }
 

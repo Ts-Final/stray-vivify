@@ -27,7 +27,7 @@ const meter = computed({
 })
 </script>
 <template>
-  <table class="table-set">
+  <table class="fn-editor">
     <tbody>
       <tr>
         <td style="width: 10%">流速</td>
@@ -60,33 +60,33 @@ const meter = computed({
         </td>
       </tr>
       <tr>
-        <td class="meter-button" @click="meter = 4">4</td>
-        <td class="meter-button" @click="meter = 6">6</td>
-        <td class="meter-button" @click="meter = 8">8</td>
-        <td class="meter-button" @click="meter = 12">12</td>
-        <td class="meter-button" @click="meter = 16">16</td>
-        <td class="meter-button" @click="meter = 24">24</td>
-        <td class="meter-button" @click="meter = 32">32</td>
-        <td class="meter-button" @click="meter = 48">48</td>
-        <td class="meter-button" @click="meter = 64">64</td>
+        <td class="fn-editor-meter-button" @click="meter = 4">4</td>
+        <td class="fn-editor-meter-button" @click="meter = 6">6</td>
+        <td class="fn-editor-meter-button" @click="meter = 8">8</td>
+        <td class="fn-editor-meter-button" @click="meter = 12">12</td>
+        <td class="fn-editor-meter-button" @click="meter = 16">16</td>
+        <td class="fn-editor-meter-button" @click="meter = 24">24</td>
+        <td class="fn-editor-meter-button" @click="meter = 32">32</td>
+        <td class="fn-editor-meter-button" @click="meter = 48">48</td>
+        <td class="fn-editor-meter-button" @click="meter = 64">64</td>
       </tr>
     </tbody>
   </table>
 </template>
-<style scoped>
-.table-set {
+<style>
+.fn-editor {
   height: min-content;
 }
 
-input {
+.fn-editor input {
   width: 100%;
 }
 
-td {
+.fn-editor td {
   text-align: center;
 }
 
-.meter-button {
+.fn-editor-meter-button {
   text-align: center;
   cursor: pointer;
   width: calc(75% / 9);
@@ -95,7 +95,7 @@ td {
   transition: 0.2s linear background-color;
 }
 
-.meter-button:hover {
+.fn-editor-meter-button:hover {
   background: #444;
 }
 </style>

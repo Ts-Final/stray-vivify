@@ -9,9 +9,9 @@ const counts = chart.diff.counts
 const sr = chart.diff.sr
 </script>
 <template>
-  <div style="user-select: none">
-    <div class="counter-title">统计</div>
-    <div class="counter-inner">
+  <div class="fn-counter">
+    <div class="fn-counter-title">统计</div>
+    <div class="fn-counter-inner">
       <div>单键</div>
       <div>{{ counts.chip }}</div>
       <div>面</div>
@@ -34,8 +34,8 @@ const sr = chart.diff.sr
       <div>{{ counts.main_bpm }})</div>
     </div>
 
-    <div v-if="Storage.settings.song_stats" class="counter-sr">
-      <div class="sr" @click="chart.diff.update_sr()">
+    <div v-if="Storage.settings.song_stats" class="fn-counter-sr">
+      <div class="fn-counter-sr-header" @click="chart.diff.update_sr()">
         <word-helper :msg="`Lv. ${(sr.total_v3 / 50).toFixed(2)}`"
                      style="text-wrap: nowrap"
                      dec="开玩笑的，点击刷新" />
@@ -53,55 +53,58 @@ const sr = chart.diff.sr
     </div>
   </div>
 </template>
-<style scoped>
-.note-width > div,
-.note-width > span,
-.note-snb > div,
-.note-snb > s {
+<style>
+.fn-counter {
+  user-select: none;
+}
+.fn-counter-note-width > div,
+.fn-counter-note-width > span,
+.fn-counter-note-snb > div,
+.fn-counter-note-snb > s {
   text-align: center;
   line-height: 1.5rem;
   height: 1.5rem;
 }
 
-.note-width > div {
+.fn-counter-note-width > div {
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.note-pending > img {
+.fn-counter-note-pending > img {
   position: relative;
   max-width: 90%;
 }
 
-.counter-title {
+.fn-counter-title {
   text-align: center;
 }
 
-.counter-inner {
+.fn-counter-inner {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 0 15px;
   text-wrap: nowrap;
 }
 
-.counter-inner div:nth-child(2n + 1),
-.counter-sr div:nth-child(2n) {
+.fn-counter-inner div:nth-child(2n + 1),
+.fn-counter-sr div:nth-child(2n) {
   text-align: right;
 }
 
-.counter-inner div:nth-child(2n),
-.counter-sr div:nth-child(2n + 1) {
+.fn-counter-inner div:nth-child(2n),
+.fn-counter-sr div:nth-child(2n + 1) {
   text-align: left;
 }
 
-.counter-sr div:first-child {
+.fn-counter-sr div:first-child {
   grid-column: 1 / 3;
   text-align: center;
   display: flex;
   justify-content: space-evenly;
 }
 
-.counter-sr {
+.fn-counter-sr {
   margin-top: 10px;
   display: grid;
   grid-template-columns: 1fr 3fr;

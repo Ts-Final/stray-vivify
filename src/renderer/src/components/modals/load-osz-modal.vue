@@ -37,7 +37,7 @@ onUnmounted(() => {
 
 <template>
   <simple-modal size="3" title="importing osz">
-    <div class="wrapper">
+    <div class="osz-wrapper">
       <Hide title="谱面">
         <div v-if="diff" class="osz-diffs">
           <div v-for="(d, ix) in diff" class="osz-diff-line">
@@ -72,8 +72,8 @@ onUnmounted(() => {
   </simple-modal>
 </template>
 
-<style scoped>
-.wrapper {
+<style>
+.osz-wrapper {
   width: 100%;
   max-height: 50vh;
   overflow: hidden scroll;

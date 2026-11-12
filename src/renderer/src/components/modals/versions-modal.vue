@@ -13,7 +13,7 @@ import { Version } from '@renderer/core/storage'
   </SimpleModal>
 </template>
 
-<style scoped>
+<style>
 .versions-wrapper {
   overflow-y: auto;
   max-height: 70vh;

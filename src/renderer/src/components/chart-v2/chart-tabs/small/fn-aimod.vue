@@ -23,19 +23,19 @@ function seek(t: number) {
       <div>内容</div>
       <div class="ai-mod-sep" />
       <template v-for="s in aimod">
-        <div class="click" @click="seek(s[0])">{{ utils.toTimeStr(s[0] / 1000) }}</div>
+        <div class="ai-mod-time" @click="seek(s[0])">{{ utils.toTimeStr(s[0] / 1000) }}</div>
         <div>{{ s[1] }}</div>
       </template>
     </div>
-    <div v-else class="no-problem">No problem</div>
-    <div v-if="!Storage.settings.auto_save" class="save">
+    <div v-else class="ai-mod-ok">No problem</div>
+    <div v-if="!Storage.settings.auto_save" class="ai-mod-save">
       自动保存已关闭。
       <a-button2 msg="保存" @click="chart.save(true)" />
     </div>
   </div>
 </template>
 
-<style scoped>
+<style>
 .ai-mod-wrapper {
   display: flex;
   flex-direction: column;
@@ -54,14 +54,14 @@ function seek(t: number) {
   border-top: 1px solid #b8dcee;
   width: 100%;
 }
-.click {
-  cursor: pointer;
-}
-.no-problem {
+.ai-mod-ok {
   color: gray;
   padding: 15px;
 }
-.save {
+.ai-mod-time {
+  cursor: pointer;
+}
+.ai-mod-save {
   display: flex;
   flex-direction: row;
 }

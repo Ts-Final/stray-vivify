@@ -8,7 +8,7 @@ const { msg } = defineProps<{
   <div class="a-button" v-html="msg" />
 </template>
 
-<style scoped>
+<style>
 .a-button {
   display: inline-block;
   cursor: pointer;

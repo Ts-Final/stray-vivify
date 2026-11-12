@@ -5,12 +5,12 @@ const needed = Log.need_img
 </script>
 
 <template>
-  <div class="imgs-wrapper">
-    <div class="imgs-header">
+  <div class="inspector-img-wrapper">
+    <div class="inspector-img-header">
       <div>需要的图片</div>
       <div>请求次数</div>
     </div>
-    <div class="imgs-header">
+    <div class="inspector-img-header">
       <div>需要的图片</div>
       <div>请求次数</div>
     </div>
@@ -21,21 +21,21 @@ const needed = Log.need_img
   </div>
 </template>
 
-<style scoped>
-.imgs-wrapper {
+<style>
+.inspector-img-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow-y: hidden;
   max-height: 100%;
   margin-top: 15px;
 }
-.imgs-header {
+.inspector-img-header {
   border-bottom: 2px solid #b8dcee;
   border-collapse: collapse;
   line-height: 1.5rem;
   margin-bottom: 10px;
 }
-.imgs-wrapper > div {
+.inspector-img-wrapper > div {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;

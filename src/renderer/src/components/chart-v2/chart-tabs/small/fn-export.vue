@@ -19,20 +19,20 @@ const last_backup = chart.backup_last
     <a-button2 msg="导出vsc" @click="write_vsc" />
     <a-button2 msg="备份" @click="backup" />
 
-    <div v-if="!last_backup.init" class="last-backup">
+    <div v-if="!last_backup.init" class="fn-export-last-backup">
       最后备份： {{ utils.toLocalTime(last_backup.time) }}
     </div>
   </div>
 </template>
 
-<style scoped>
+<style>
 .fn-export {
   display: grid;
   grid-template-columns: repeat(var(--cols), auto);
   justify-items: center;
   --cols: 2;
 }
-.last-backup {
+.fn-export-last-backup {
   grid-column: span var(--cols);
   color: gray;
 }

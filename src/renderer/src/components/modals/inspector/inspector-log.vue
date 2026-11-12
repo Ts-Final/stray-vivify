@@ -18,7 +18,7 @@ function toLocalDate(t: number) {
 </script>
 
 <template>
-  <div class="counter">
+  <div class="inspector-log-counter">
     <div @click="level = 'debug'">Debug: {{ count.debug }}</div>
     <div @click="level = 'msg'">Msg: {{ count.msg }}</div>
     <div @click="level = 'warn'">Warn: {{ count.warn }}</div>
@@ -26,28 +26,28 @@ function toLocalDate(t: number) {
     <div @click="level = 'all'">All: {{ count.all }}</div>
     <div title="点我！">信息等级：{{ level }}</div>
   </div>
-  <div class="log-wrapper">
-    <div v-for="l in logs" :class="l.level">
+  <div class="inspector-log-wrapper">
+    <div v-for="l in logs" :class="'inspector-log-' + l.level">
       <div>{{ toLocalDate(l.time) }}</div>
       <div>{{ l.msg }}</div>
     </div>
   </div>
 </template>
 
-<style scoped>
-.counter {
+<style>
+.inspector-log-counter {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   padding-bottom: 2rem;
   margin-left: 5%;
 }
-.counter > div:not(:last-child) {
+.inspector-log-counter > div:not(:last-child) {
   cursor: pointer;
 }
-.counter > div:last-child {
+.inspector-log-counter > div:last-child {
   cursor: help;
 }
-.log-wrapper {
+.inspector-log-wrapper {
   overflow: auto;
   width: calc(90% - 20px);
   display: flex;
@@ -60,15 +60,15 @@ function toLocalDate(t: number) {
   gap: 5px;
   flex-grow: 1;
 }
-.log-wrapper > div {
+.inspector-log-wrapper > div {
   display: grid;
   grid-template-columns: 5rem 1fr;
   word-break: break-all;
 }
-.warn {
+.inspector-log-warn {
   background: #f3ff1f66;
 }
-.err {
+.inspector-log-err {
   background: darkred;
 }
 </style>

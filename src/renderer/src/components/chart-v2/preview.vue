@@ -96,25 +96,25 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div id="preview-field" ref="top-div" class="playfield">
-    <img v-if="bg_error == 0" :src="bg_src" alt="" class="playfield-bg" @error="bg_error = 1" />
+  <div id="preview-field" ref="top-div" class="preview-playfield">
+    <img v-if="bg_error == 0" :src="bg_src" alt="" class="preview-playfield-bg" @error="bg_error = 1" />
     <transition name="fadeout">
-      <div v-if="animation_state < 3" class="pf-animations">
+      <div v-if="animation_state < 3" class="preview-animations">
         <template v-if="animation_state > 0">
-          <img v-if="no_img" alt="" class="pf-ani-img" src="/song.jpg" />
-          <img v-else :src="img_src" alt="" class="pf-ani-img" @error="no_img = true" />
-          <div class="pf-ani-inf">
-            <div class="pf-ani-name">{{ chart.song.name }}</div>
-            <div class="pf-ani-comp">by {{ chart.song.composer }}</div>
+          <img v-if="no_img" alt="" class="preview-ani-img" src="/song.jpg" />
+          <img v-else :src="img_src" alt="" class="preview-ani-img" @error="no_img = true" />
+          <div class="preview-ani-inf">
+            <div class="preview-ani-name">{{ chart.song.name }}</div>
+            <div class="preview-ani-comp">by {{ chart.song.composer }}</div>
             <transition name="fade">
-              <div v-if="animation_state < 2" class="pf-ani-diff">
+              <div v-if="animation_state < 2" class="preview-ani-diff">
                 <div>{{ chart.diff.diff1 }}</div>
                 <div>{{ chart.diff.diff2 }}</div>
               </div>
             </transition>
           </div>
         </template>
-        <div v-if="animation_state > 1" class="pf-ani-inf2">
+        <div v-if="animation_state > 1" class="preview-ani-inf2">
           <div>
             <div>谱师</div>
             <div>{{ chart.diff.charter }}</div>
@@ -140,11 +140,11 @@ onUnmounted(() => {
       </div>
     </transition>
     <template v-if="show_lanes">
-      <div class="pf-song">
-        <div class="pf-name">{{ chart.song.name }}</div>
-        <div class="pf-comp">by {{ chart.song.composer }}</div>
+      <div class="preview-song">
+        <div class="preview-name">{{ chart.song.name }}</div>
+        <div class="preview-comp">by {{ chart.song.composer }}</div>
       </div>
-      <div v-if="setting.sprite" class="pf-sprite">
+      <div v-if="setting.sprite" class="preview-sprite">
         <a-img :src="img_src" alt="" />
       </div>
       <slot>
@@ -153,39 +153,39 @@ onUnmounted(() => {
 
       <tick-circle v-if="Storage.settings.record_field.show_circles" />
 
-      <div class="pf-inf">
+      <div class="preview-inf">
         <slot name="info"></slot>
         <div v-if="setting.detail > 2">scale: {{ editor.scale }}</div>
         <div v-if="setting.detail > 1">{{ current_density }}/sec</div>
         <div>Bpm: {{ chart.diff.timing[current_timing].bpm }}</div>
-        <div class="pf-diff">{{ chart.diff.diff1 }} {{ chart.diff.diff2 }}</div>
-        <div class="pf-charter">{{ chart.diff.charter }}</div>
+        <div class="preview-diff">{{ chart.diff.diff1 }} {{ chart.diff.diff2 }}</div>
+        <div class="preview-charter">{{ chart.diff.charter }}</div>
       </div>
-      <div class="pf-time">
+      <div class="preview-time">
         {{ utils.ms2str(current_time, 0) }}/{{ utils.ms2str(length, 0) }}
         <br />
         {{ Math.max(0, Math.round((current_time / length) * 100)) + '%' }}
       </div>
-      <div class="pf-version">{{ Version.str }}</div>
+      <div class="preview-version">{{ Version.str }}</div>
     </template>
     <transition v-if="show_result" name="fade">
-      <div class="pf-results" style="cursor: auto">
-        <div class="pr-inf">
-          <div class="pr-name">{{ chart.song.name }}</div>
-          <div class="pr-comp">{{ chart.song.composer }}</div>
-          <img v-if="no_img" alt="" class="pr-img" src="/song.jpg" />
-          <img v-else :src="img_src" alt="" class="pr-img" />
-          <div class="pr-diff">{{ chart.diff.diff1 }} {{ chart.diff.diff2 }}</div>
-          <div class="pr-charter">{{ chart.diff.charter }}</div>
+      <div class="preview-results" style="cursor: auto">
+        <div class="preview-result-inf">
+          <div class="preview-result-name">{{ chart.song.name }}</div>
+          <div class="preview-result-comp">{{ chart.song.composer }}</div>
+          <img v-if="no_img" alt="" class="preview-result-img" src="/song.jpg" />
+          <img v-else :src="img_src" alt="" class="preview-result-img" />
+          <div class="preview-result-diff">{{ chart.diff.diff1 }} {{ chart.diff.diff2 }}</div>
+          <div class="preview-result-charter">{{ chart.diff.charter }}</div>
         </div>
-        <div class="pr-result">
+        <div class="preview-result">
           <slot name="result">
-            <div class="pr-score-wrapper">
-              <div class="pr-score">101.0000%</div>
-              <div class="pr-combo">COMBO<br />{{ chart.diff.notes.length }}</div>
+            <div class="preview-result-score-wrapper">
+              <div class="preview-result-score">101.0000%</div>
+              <div class="preview-result-combo">COMBO<br />{{ chart.diff.notes.length }}</div>
             </div>
-            <fn-counter class="pr-counter" />
-            <div class="pr-back" @click="route.setTab(1)">返回编辑</div>
+            <fn-counter class="preview-result-counter" />
+            <div class="preview-result-back" @click="route.setTab(1)">返回编辑</div>
           </slot>
         </div>
       </div>
@@ -193,8 +193,8 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped>
-.playfield {
+<style>
+.preview-playfield {
   position: absolute;
   top: 0;
   left: 0;
@@ -206,7 +206,7 @@ onUnmounted(() => {
   user-select: none;
   cursor: none;
 }
-.playfield-bg {
+.preview-playfield-bg {
   position: absolute;
   height: 80%;
   top: 10%;
@@ -214,18 +214,18 @@ onUnmounted(() => {
   transform: translateX(-50%);
   filter: blur(3px);
 }
-img {
+.preview-playfield img {
   pointer-events: none;
 }
-.pf-animations,
-.pf-results {
+.preview-animations,
+.preview-results {
   position: absolute;
   width: 100%;
   height: 100%;
   background-image: var(--purple-bgi);
   z-index: var(--z-preview-result);
 }
-@keyframes pf-ani-img {
+@keyframes preview-ani-img {
   0% {
     height: 0;
   }
@@ -233,7 +233,7 @@ img {
     height: 30vh;
   }
 }
-.pf-ani-img {
+.preview-ani-img {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -241,10 +241,10 @@ img {
   top: 15vh;
   border: 2px solid white;
   overflow: hidden;
-  animation: pf-ani-img 0.3s ease-in-out forwards;
+  animation: preview-ani-img 0.3s ease-in-out forwards;
   animation-fill-mode: both;
 }
-@keyframes pf-ani-inf {
+@keyframes preview-ani-inf {
   0% {
     opacity: 0;
     transform: translate(-50%, 20%);
@@ -254,25 +254,25 @@ img {
     opacity: 1;
   }
 }
-.pf-ani-inf {
+.preview-ani-inf {
   position: absolute;
   opacity: 0;
   left: 50%;
   top: 50vh;
   animation-fill-mode: both;
-  animation: pf-ani-inf 0.3s ease-in-out forwards;
+  animation: preview-ani-inf 0.3s ease-in-out forwards;
   animation-delay: 0.3s;
 }
-.pf-ani-name {
+.preview-ani-name {
   font-size: 2.5rem;
   text-align: center;
   font-weight: bold;
 }
-.pf-ani-comp {
+.preview-ani-comp {
   font-size: 1.5rem;
   text-align: center;
 }
-.pf-ani-diff {
+.preview-ani-diff {
   margin-top: 15px;
   font-size: 1.2rem;
   display: grid;
@@ -280,7 +280,7 @@ img {
   gap: 25px;
   justify-items: center;
 }
-@keyframes pf-ani-inf2 {
+@keyframes preview-ani-inf2 {
   0% {
     opacity: 0;
     transform: translateY(50px);
@@ -290,10 +290,10 @@ img {
     transform: translateY(0);
   }
 }
-.pf-ani-inf2 {
+.preview-ani-inf2 {
   opacity: 0;
   animation-fill-mode: both;
-  animation: pf-ani-inf2 0.4s linear forwards;
+  animation: preview-ani-inf2 0.4s linear forwards;
   position: absolute;
   top: calc(50vh + 5rem + 30px);
   left: 35vw;
@@ -302,54 +302,54 @@ img {
   grid-template-columns: 1fr 1fr;
   row-gap: 15px;
 }
-.pf-ani-inf2 > div > div:first-child {
+.preview-ani-inf2 > div > div:first-child {
   font-size: 1.5rem;
   font-weight: bold;
 }
-.pf-song {
+.preview-song {
   position: absolute;
   left: 50px;
   bottom: 80px;
 }
-.pf-name {
+.preview-name {
   font-size: 1.5rem;
   font-weight: bold;
 }
-.pf-sprite {
+.preview-sprite {
   position: absolute;
   left: 50px;
   bottom: 250px;
 }
-.pf-sprite > img {
+.preview-sprite > img {
   width: 200px;
   border: #b8dcee 2px solid;
 }
-.pf-inf {
+.preview-inf {
   position: absolute;
   right: 50px;
   bottom: 80px;
   text-align: right;
 }
-.pf-diff {
+.preview-diff {
   font-size: 1.5rem;
 }
-.pf-charter {
+.preview-charter {
   color: gray;
 }
-.pf-time {
+.preview-time {
   position: absolute;
   right: 15px;
   top: 15px;
   text-align: right;
 }
-.pf-version {
+.preview-version {
   position: absolute;
   top: 15px;
   left: 15px;
   opacity: 0.4;
   color: gray;
 }
-.pr-inf {
+.preview-result-inf {
   position: absolute;
   left: 10%;
   top: 50%;
@@ -361,25 +361,25 @@ img {
   background: var(--darker-bgi);
   padding: 10px 0;
 }
-.pr-name {
+.preview-result-name {
   font-weight: bold;
   font-size: 1.2rem;
   color: white;
 }
-.pr-comp {
+.preview-result-comp {
   color: gray;
 }
-.pr-img {
+.preview-result-img {
   width: 100%;
   margin: 10px 0;
 }
-.pr-diff {
+.preview-result-diff {
   font-size: 1.1rem;
 }
-.pr-charter {
+.preview-result-charter {
   color: gray;
 }
-.pr-result {
+.preview-result {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -390,11 +390,11 @@ img {
   flex-direction: column;
   align-items: center;
 }
-.pr-result > div {
+.preview-result > div {
   background: var(--darker-bgi);
 }
 
-.pr-score-wrapper {
+.preview-result-score-wrapper {
   width: 100%;
   height: 10vh;
   border: 2px solid white;
@@ -403,19 +403,19 @@ img {
   align-items: center;
   justify-content: center;
 }
-.pr-score {
+.preview-result-score {
   font-family: oppo-sans, sans-serif;
   font-size: 2rem;
 }
-.pr-combo {
+.preview-result-combo {
   text-align: center;
 }
-.pr-counter {
+.preview-result-counter {
   width: calc(100% - 30px);
   border: 2px white solid;
   padding: 15px;
 }
-.pr-back {
+.preview-result-back {
   border: 2px white solid;
   text-align: center;
   width: 6rem;

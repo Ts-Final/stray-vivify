@@ -60,12 +60,12 @@ onUnmounted(() => end_tap())
 
 <template>
   <div class="fn-sectiontap">
-    <div class="st-title">Timing #{{ current_timing_ix }}</div>
-    <div class="st-body" :class="utils.or(go_tap, 'st-col')">
-      <div class="st-timing">
-        <div class="st-timing-info">
+    <div class="section-tap-title">Timing #{{ current_timing_ix }}</div>
+    <div class="section-tap-body" :class="utils.or(go_tap, 'section-tap-col')">
+      <div class="section-tap-timing">
+        <div class="section-tap-timing-info">
           <div>BPM</div>
-          <div class="st-bpm" @click="jump_to_timing()">{{ chart.diff.timing[current_timing_ix].bpm.toFixed(2) }}</div>
+          <div class="section-tap-bpm" @click="jump_to_timing()">{{ chart.diff.timing[current_timing_ix].bpm.toFixed(2) }}</div>
           <div>
             {{
               chart.diff.timing[current_timing_ix].num +
@@ -74,7 +74,7 @@ onUnmounted(() => end_tap())
             }}
           </div>
         </div>
-        <div class="st-timing-btns">
+        <div class="section-tap-timing-btns">
           <a-button2 msg="Tap" @click="nearest_tap()" />
           <a-button2 msg="从开头Tap" @click="start_tap()" />
           <template v-if="!go_tap">
@@ -83,7 +83,7 @@ onUnmounted(() => end_tap())
           </template>
         </div>
       </div>
-      <div class="st-tap" v-if="go_tap">
+      <div class="section-tap-tap" v-if="go_tap">
         <strong class="rainbow-text-flow" v-if="isST">正在Tap!</strong>
         <div>
           Avg. Delta:
@@ -93,7 +93,7 @@ onUnmounted(() => end_tap())
         <div :class="utils.or(Math.abs(result.a) < 1e-3 && !!result.a, 'rainbow-text-color')">
           â: {{ result.a.toExponential(3) }}
         </div>
-        <div class="st-stop">
+        <div class="section-tap-stop">
           <a-button2 msg="清空数据" @click="reset()" />
           <a-button2 msg="stop" @click="end_tap()" />
           <a-button2 v-if="!isST && !refuse" msg="应用延迟" @click="apply_delay()" />
@@ -104,26 +104,26 @@ onUnmounted(() => end_tap())
   </div>
 </template>
 
-<style scoped>
+<style>
 .fn-sectiontap {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 }
-.st-body {
+.section-tap-body {
   display: grid;
   grid-template-columns: 1fr;
 }
-.st-body.st-col {
+.section-tap-body.section-tap-col {
   grid-template-columns: min-content 1fr;
 }
-.st-bpm {
+.section-tap-bpm {
   font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
 }
-.st-timing-info {
+.section-tap-timing-info {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -131,22 +131,22 @@ onUnmounted(() => end_tap())
   justify-content: space-evenly;
   align-items: center;
 }
-.st-col .st-timing {
+.section-tap-col .section-tap-timing {
   padding: 0 5px;
   box-sizing: border-box;
 }
-.st-col .st-timing-info {
+.section-tap-col .section-tap-timing-info {
   flex-direction: column;
   gap: 5px;
 }
-.st-timing-btns {
+.section-tap-timing-btns {
   display: flex;
   flex-direction: row;
   gap: 10px;
   justify-content: space-evenly;
   align-items: center;
 }
-.st-tap {
+.section-tap-tap {
   border-left: gray 1px solid;
   padding-left: 15px;
   box-sizing: border-box;
@@ -156,7 +156,7 @@ onUnmounted(() => end_tap())
   align-items: center;
   justify-content: center;
 }
-.st-stop {
+.section-tap-stop {
   display: flex;
   gap: 10px;
 }
