@@ -430,11 +430,39 @@ import AHref from '@renderer/components/a-elements/a-href.vue'
       <div>调整了svc的内容，现在不再包含bg了。</div>
       <div>调整了rework的自动拆谱算法。现在会尽可能把bumper串拆成切。</div>
     </Build>
-    <build build="1.1.2" y="2026" m="10" d="21" >
+    <build build="1.1.2" y="2026" m="10" d="21">
       <div>响应CVE号召，更新node至25.0.0</div>
       <div>重构了音频系统。（Pr @CreeperI）</div>
       <div>添加了转转转</div>
       <div>添加了几个帮助文档的内容。</div>
+    </build>
+    <build build="1.2.0" y="2026" m="11" d="12">
+      <template #bugs>
+        <div>修复了备份时间与本地时间不符的问题。</div>
+        <div>修复了关闭彩色stat时，stat条的宽度未能正确设定的问题。</div>
+        <div>修复了bpm更改之后，分音小节线等不会立刻被刷新的问题。</div>
+        <div>修复了“线密度，点击刷新”在点击时不会正常重新计算的问题。</div>
+        <div>修复了切换tab时，fn-tesseract未能正确卸载的问题。</div>
+        <div>修复了剪切板上的note在摆放时，无法横向左右移动的问题。</div>
+      </template>
+      <div>更新node至26.12.1。</div>
+      <div>现在会向std::cout输出invoke的调用，可以借此查看哪里出了一些意料之外的问题。</div>
+      <div>
+        调整了preinit的加载逻辑。现在一个阶段出现问题不再会导致全部卡住了，并且你可以选择强行启动！
+      </div>
+      <div>调整了osz导入音频时的选择逻辑，现在会选择由读取到的第一个.osu指定的音频文件。</div>
+      <div>添加了其它的导入方式，参考帮助-导入以查看所有可用的导入方式。</div>
+      <div>调整了线密度的计算逻辑避免栈溢出。</div>
+      <div>修改了stat的计算，现在所有的值不会为负了。（对，Burst</div>
+      <div>添加了bpm tap。可以在add timing旁边找到。</div>
+      <div>添加了节拍器和延迟校准。请在设置和帮助中查看fn-section-tap。</div>
+      <div>添加了设置页面中对一些功能的介绍和试用，如防沉迷。</div>
+      <div>调整了header和mouse-tracker的层级。现在鼠标红点会在最上面了。</div>
+      <div>移除了diff参考的背景模式。</div>
+      <div>移除了external/vsm-object</div>
+      <div>添加了skin/skin.css的支持。你可以自定义样式咯。</div>
+      <div>添加了很多（？）帮助文档。</div>
+      <div>添加了生日祝福。以及，祝ivd成年快乐哦。</div>
     </build>
   </div>
 </template>

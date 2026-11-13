@@ -38,7 +38,7 @@ const fn = inject<(idx: number) => void>('focus') ?? ((_) => {})
   padding-right: 15px;
   cursor: pointer;
 }
-* {
+.timing-single * {
   user-select: none;
 }
 </style>

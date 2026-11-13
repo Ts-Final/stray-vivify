@@ -44,7 +44,7 @@ async function import_mcz() {
 </script>
 
 <template>
-  <div class="header-wrapper">
+  <div class="header-wrapper header">
     <div class="header-top">
       <img alt="wug" class="header-yq" src="/yq.jpg" />
       <div class="header-menu-ul">
@@ -69,7 +69,7 @@ async function import_mcz() {
 </template>
 
 <style>
-.h-menu-btn-i > .h-menu-btn-text {
+.header .h-menu-btn-i > .h-menu-btn-text {
   font-size: 1rem;
   text-align: center;
 }

@@ -108,8 +108,7 @@ function toDate(y: string | number, m: string | number, d: string | number) {
   padding: 10px;
   border-radius: 10px;
 }
-</style>
-<style>
+
 .build-content > span {
   display: block;
   font-size: 0.95rem;

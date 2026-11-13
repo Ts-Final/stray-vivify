@@ -13,7 +13,7 @@ const { name, disabled } = defineProps<{ name: string; disabled?: boolean }>()
 </template>
 
 <style>
-.sis-input {
+.sis-input.a-text-input {
   border-bottom: 1px solid #b8dcee77;
   width: 90%;
 }

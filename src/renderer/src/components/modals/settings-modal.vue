@@ -330,11 +330,7 @@ onUnmounted(() => {
 .settings-contain input:focus {
   border-bottom: transparent 1px solid !important;
 }
-.settings-wrapper .a-color-input {
-  justify-items: flex-start;
-  width: min-content;
-  gap: 0 20px;
-}
+
 .settings-contain input[type='checkbox'] {
   width: min-content;
 }

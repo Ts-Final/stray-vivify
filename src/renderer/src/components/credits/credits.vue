@@ -130,7 +130,7 @@ const total = computed(() => utils.toTimeStr(Storage.data.value.statistics.used_
     text-align: center;
   }
 }
-* {
+.credits-list * {
   user-select: none;
   text-align: center;
   font-size: 1.1rem;

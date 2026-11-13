@@ -47,7 +47,7 @@ const show_version = computed(() => {
   <WordHelperOverlay />
   <MouseTracker />
 </template>
-<style scoped>
+<style>
 .--build {
   position: fixed;
   right: 0;

@@ -97,7 +97,7 @@ const sr = chart.diff.sr
   text-align: left;
 }
 
-.fn-counter-sr div:first-child {
+.fn-counter-sr-header {
   grid-column: 1 / 3;
   text-align: center;
   display: flex;

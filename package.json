@@ -1,6 +1,6 @@
 {
   "name": "stray-vivify",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "stray-vivify",
   "main": "./out/main/index.js",
   "author": "terminalflow",
